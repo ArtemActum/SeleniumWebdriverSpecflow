@@ -6,15 +6,24 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SeleniumWebdriver.Interfaces;
+using SeleniumWebdriver.Settings;
 
 namespace SeleniumWendriver.Configuration
 {
     public class AppConfigReader : IConfig
     {
-        public BrowserType GetBrowser()
+        public BrowserType? GetBrowser()
         {
             string browser = ConfigurationManager.AppSettings.Get(AppConfigKeys.Browser);
-            return (BrowserType) Enum.Parse(typeof(BrowserType), browser);
+            try
+            {
+                return (BrowserType)Enum.Parse(typeof(BrowserType), browser);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public int GetElementLoadTimeout()
@@ -35,13 +44,13 @@ namespace SeleniumWendriver.Configuration
 
         public int GetPageLoadTimeOut()
         {
-            throw new NotImplementedException();
+            string timeout = ConfigurationManager.AppSettings.Get(AppConfigKeys.PageLoadTimeout);
+            if (timeout == null)
+                return 30;
+            return Convert.ToInt32(timeout);
         }
 
-        //public int GetPageLoadTimeOut()
-        //{
-        //    throw new NotImplementedException();
-        //}
+   
 
         public string GetPassword()
         {
@@ -58,9 +67,6 @@ namespace SeleniumWendriver.Configuration
             return ConfigurationManager.AppSettings.Get(AppConfigKeys.Website);
         }
 
-        BrowserType? IConfig.GetBrowser()
-        {
-            throw new NotImplementedException();
-        }
+     
     }
 }

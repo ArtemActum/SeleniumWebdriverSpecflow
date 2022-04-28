@@ -16,6 +16,6 @@ namespace SeleniumWendriver.Interfaces
         string GetWebsite();
 
         int GetPageLoadTimeOut();
-        int GetElementLoadTimeout();
+        int GetElementLoadTimeOut();
     }
 }

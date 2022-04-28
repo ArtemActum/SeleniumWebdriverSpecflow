@@ -1,17 +1,22 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
-using SeleniumWendriver.ComponentHelper;
-using SeleniumWendriver.Configuration;
-using SeleniumWendriver.CustomException;
-using SeleniumWendriver.Settings;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LivingDoc.SpecFlowPlugin;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
+
+using OpenQA.Selenium.Remote;
+
+using SeleniumWendriver.ComponentHelper;
+using SeleniumWendriver.Configuration;
+using SeleniumWendriver.CustomException;
+using SeleniumWendriver.Settings;
+using TechTalk.SpecFlow;
 
 
 
@@ -95,6 +100,8 @@ namespace SeleniumWendriver.BaseClasses
         public static void InitWebdriver(TestContext tc)
         {
             ObjectRepository.Config = new AppConfigReader();
+            
+          
 
             switch (ObjectRepository.Config.GetBrowser())
             {
@@ -117,12 +124,12 @@ namespace SeleniumWendriver.BaseClasses
                 default:
                     throw new NoSuitableDriverFound("Driver Not Found: " + ObjectRepository.Config.GetBrowser().ToString());
             }
-            //NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
-            //ObjectRepository.Driver.Manage()
-            //    .Timeouts()
-            //    .SetPageLoadTimeout(TimeSpan.FromSeconds(ObjectRepository.Config.GetPageLoadTimeout()));
-            //ObjectRepository.Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeout()));
-
+            NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
+            ObjectRepository.Driver.Manage()
+                .Timeouts()
+               .PageLoad = TimeSpan.FromSeconds(ObjectRepository.Config.GetPageLoadTimeOut());
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeout());
+            BrowserHelper.BrowserMaximize();
         }
         [AssemblyCleanup]
         public static void TearDown()

@@ -6,8 +6,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SeleniumWebdriver.Interfaces;
-using SeleniumWebdriver.Settings;
+
 
 namespace SeleniumWendriver.Configuration
 {

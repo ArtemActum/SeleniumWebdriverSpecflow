@@ -103,4 +103,5 @@ namespace SeleniumWendriver.TestScript.WebDriverWait
                 return null;
             });
         }
+    }
 }

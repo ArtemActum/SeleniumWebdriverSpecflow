@@ -13,7 +13,7 @@ namespace SeleniumWendriver.TestScript.HyperLink
     [TestClass]
     public class TestHyperLink
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Smoke")]
         public void ClickLink()
         {
             NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());

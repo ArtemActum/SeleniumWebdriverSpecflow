@@ -128,7 +128,7 @@ namespace SeleniumWendriver.BaseClasses
             ObjectRepository.Driver.Manage()
                 .Timeouts()
                .PageLoad = TimeSpan.FromSeconds(ObjectRepository.Config.GetPageLoadTimeOut());
-            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeout());
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeOut());
             BrowserHelper.BrowserMaximize();
         }
         [AssemblyCleanup]

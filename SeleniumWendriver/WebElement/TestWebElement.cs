@@ -25,6 +25,8 @@ namespace SeleniumWendriver.TestWebElement
                 Console.WriteLine("Size : {0}", col.Count);
                 Console.WriteLine("Size : {0}", col.ElementAt(0));
 
+                var a = ObjectRepository.Driver.FindElement(By.Name("showmybugslink")).GetAttribute("checked");
+
                 //ObjectRepository.Driver.FindElement(By.ClassName("btn"));
                 //ObjectRepository.Driver.FindElement(By.CssSelector("#find"));
                 //ObjectRepository.Driver.FindElement(By.TagName("input"));

@@ -19,7 +19,35 @@ namespace SeleniumWendriver.ComponentHelper
 {
     public class GenericHelper
     {
-        
+
+        private static Func<IWebDriver, bool> WaitForWebElementFunc(By locator)
+        {
+            return ((x) =>
+            {
+                if (x.FindElements(locator).Count == 1)
+                    return true;
+                
+                return false;
+            });
+        }
+        private static Func<IWebDriver, IList<IWebElement>> GetAllElements(By locator)
+        {
+            return ((x) =>
+            {
+                return x.FindElements(locator);
+            });
+        }
+
+        private static Func<IWebDriver, IWebElement> WaitForWebElementInPageFunc(By locator)
+        {
+            return ((x) =>
+            {
+                if (x.FindElements(locator).Count == 1)
+                    return x.FindElement(locator);
+                return null;
+            });
+        }
+
         public static bool IsElementPresent(By locator)
 
         {
@@ -57,8 +85,32 @@ namespace SeleniumWendriver.ComponentHelper
             }
             screen.SaveAsFile(filename, ScreenshotImageFormat.Jpeg);
         }
+        public static void SelecFromAutoSuggest(By autoSuggesLocator, string initialStr, string strToSelect,
+            By autoSuggestistLocator)
+        {
+            var autoSuggest = ObjectRepository.Driver.FindElement(autoSuggesLocator);
+            autoSuggest.SendKeys(initialStr);
+            Thread.Sleep(1000);
 
-        public static bool IWebElement WaitForWebElement(By locator, TimeSpan timeout)
+            var wait = GenericHelper.GetWebdriverWait(TimeSpan.FromSeconds(40));
+            var elements = wait.Until(GetAllElements(autoSuggestistLocator));
+            var select = elements.First((x => x.Text.Equals(strToSelect, StringComparison.OrdinalIgnoreCase)));
+            select.Click();
+            Thread.Sleep(1000);
+        }
+
+        public static WebDriverWait GetWebdriverWait(TimeSpan timeout)
+        {
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = (TimeSpan.FromSeconds(1));
+            WebDriverWait wait = new WebDriverWait(ObjectRepository.Driver, timeout)
+            {
+                PollingInterval = TimeSpan.FromMilliseconds(500),
+            };
+            wait.IgnoreExceptionTypes(typeof(NoSuchElementException), typeof(ElementNotVisibleException));
+            return wait;
+        }
+
+        public static bool WaitForWebElement(By locator, TimeSpan timeout)
         {
             ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = (TimeSpan.FromSeconds(1));
             var wait = GetWebdriverWait(timeout);
@@ -77,17 +129,17 @@ namespace SeleniumWendriver.ComponentHelper
 
             return flag;
         }
-
         public static IWebElement WaitForWebElementInPage(By locator, TimeSpan timeout)
         {
             ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = (TimeSpan.FromSeconds(1));
-
+            
             var wait = GetWebdriverWait(timeout);
             var flag = wait.Until(WaitForWebElementInPageFunc(locator));
-
+            
             ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = (TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeOut()));
             return flag;
         }
+
 
         public static IWebElement Wait(Func<IWebDriver, IWebElement> conditions, TimeSpan timeout)
         {

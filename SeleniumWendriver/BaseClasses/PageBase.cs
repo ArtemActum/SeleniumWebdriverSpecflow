@@ -12,14 +12,14 @@ namespace SeleniumWendriver.BaseClasses
     {
         private IWebDriver driver;
 
-        [FindsBy(How = How.LinkText, Using = "Home")]
-        private IWebElement HomeLink;
+        //[FindsBy(How = How.LinkText, Using = "Home")]
+        //private IWebElement HomeLink;
         //private IWebElement HomeLink => driver.FindElement(By.LinkText("Home"));
 
         public PageBase(IWebDriver _driver)
         {
-            PageFactory.InitElements(_driver, this);
-            this.driver = _driver;
+            //PageFactory.InitElements(_driver, this);
+            //this.driver = _driver;
         }
 
         public void Logout()
@@ -28,13 +28,13 @@ namespace SeleniumWendriver.BaseClasses
             {
                 ButtonHelper.ClickButton(By.XPath("//div[@id='header']/ul[1]/li[11]/a"));
             }
-            GenericHelper.WaitForWebElementInPage(By.Id("welcome"), TimeSpan.FromSeconds(30));
+            //GenericHelper.WaitForWebElementInPage(By.Id("welcome"), TimeSpan.FromSeconds(30));
 
         }
 
         protected void NaviGateToHomePage()
         {
-            HomeLink.Click();
+            //HomeLink.Click();
         }
 
         public string Title

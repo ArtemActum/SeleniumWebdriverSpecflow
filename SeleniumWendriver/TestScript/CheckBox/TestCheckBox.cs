@@ -27,7 +27,7 @@ namespace SeleniumWendriver.TestScript.CheckBox
             Console.WriteLine(CheckBoxHelper.IsCheckBoxChecked(By.Id("Bugzilla_restrictlogin")));
             CheckBoxHelper.CheckedCheckBox(By.Id("Bugzilla_restrictlogin"));
             Console.WriteLine(CheckBoxHelper.IsCheckBoxChecked(By.Id("Bugzilla_restrictlogin")));
-            ButtonHelper.Logout();
+            //ButtonHelper.Logout();
         }
     }
 }

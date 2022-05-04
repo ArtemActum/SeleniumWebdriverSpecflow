@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenQA.Selenium.Support;
+using SeleniumExtras.PageObjects;
 
 namespace SeleniumWendriver.BaseClasses
 {
@@ -12,17 +14,19 @@ namespace SeleniumWendriver.BaseClasses
     {
         private IWebDriver driver;
 
-        //[FindsBy(How = How.LinkText, Using = "Home")]
-        //private IWebElement HomeLink;
+
+        
+        [FindsBy(How = How.LinkText, Using = "Home")]
+        private IWebElement HomeLink;
         //private IWebElement HomeLink => driver.FindElement(By.LinkText("Home"));
 
         public PageBase(IWebDriver _driver)
         {
-            //PageFactory.InitElements(_driver, this);
+            PageFactory.InitElements(_driver, this);
             //this.driver = _driver;
         }
 
-        public void Logout()
+        protected void Logout()
         {
             if (GenericHelper.IsElementPresent(By.XPath("//div[@id='header']/ul[1]/li[11]/a")))
             {
@@ -34,7 +38,7 @@ namespace SeleniumWendriver.BaseClasses
 
         protected void NaviGateToHomePage()
         {
-            //HomeLink.Click();
+            HomeLink.Click();
         }
 
         public string Title

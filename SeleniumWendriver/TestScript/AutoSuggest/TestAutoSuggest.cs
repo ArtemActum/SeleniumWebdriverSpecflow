@@ -43,7 +43,7 @@ namespace SeleniumWendriver.TestScript.TestAutoSuggest
 
         [TestMethod]
         public void MultiSelect()
-        {
+        {   
             NavigationHelper.NavigateToUrl("http://demos.telerik.com/kendo-ui/multiselect/index");
             //step - 1 to click on the text box
             IWebElement ele = ObjectRepository.Driver.FindElement(By.XPath("//div[@id='example']/child::div/descendant::div[position()=2]"));

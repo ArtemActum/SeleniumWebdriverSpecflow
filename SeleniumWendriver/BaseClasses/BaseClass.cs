@@ -45,6 +45,7 @@ namespace SeleniumWendriver.BaseClasses
             InternetExplorerOptions options = new InternetExplorerOptions();
             options.IntroduceInstabilityByIgnoringProtectedModeSettings = true;
             options.EnsureCleanSession = true;
+            options.ElementScrollBehavior = InternetExplorerElementScrollBehavior.Bottom;
             return options;
         }
 

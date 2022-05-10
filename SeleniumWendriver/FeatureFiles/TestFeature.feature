@@ -11,7 +11,6 @@ Background: Pre-Condition
 Scenario: Login scenario of Bugzilla
 	# Steps - A Given Step
 
-	
 	When I click on File a Bug Link
 	Then User should be at Login Page
 	When I provide the username, password and click on Login button

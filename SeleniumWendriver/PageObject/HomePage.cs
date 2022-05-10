@@ -11,6 +11,7 @@ using OpenQA.Selenium.Support;
 
 using SeleniumWendriver.BaseClasses;
 using SeleniumExtras.PageObjects;
+using SeleniumWendriver.ComponentHelper;
 
 namespace SeleniumWendriver.PageObject
 {
@@ -50,9 +51,16 @@ namespace SeleniumWendriver.PageObject
         #endregion
 
         #region Navigation
+        //public LoginPage NavigateToLogin()
+        //{
+        //    FileABugLink.Click();
+        //    return new LoginPage(driver);
+        //}
+
         public LoginPage NavigateToLogin()
         {
             FileABugLink.Click();
+            GenericHelper.WaitForWebElementInPage(By.Id("log_in"), TimeSpan.FromSeconds(30));
             return new LoginPage(driver);
         }
 

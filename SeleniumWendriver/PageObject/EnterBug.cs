@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using SeleniumWendriver.BaseClasses;
+using SeleniumWendriver.ComponentHelper;
 using SeleniumWendriver.Settings;
 using System;
 using System.Collections.Generic;
@@ -30,11 +31,19 @@ namespace SeleniumWendriver.PageObject
 
         #region Navigation
 
+        //public BugDetail NavigateToDetail()
+        //{
+        //    Testng.Click();
+        //    return new BugDetail(driver);
+        //}
+
         public BugDetail NavigateToDetail()
         {
             Testng.Click();
+            GenericHelper.WaitForWebElementInPage(By.Id("component"), TimeSpan.FromSeconds(30));
             return new BugDetail(driver);
         }
+
         #endregion
 
     }

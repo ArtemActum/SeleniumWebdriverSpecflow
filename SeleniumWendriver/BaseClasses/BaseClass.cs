@@ -101,8 +101,9 @@ namespace SeleniumWendriver.BaseClasses
         public static void InitWebdriver(TestContext tc)
         {
             ObjectRepository.Config = new AppConfigReader();
-            
-          
+            //Reporter.GetReportManager();
+            //Reporter.AddTestCaseMetadataToHtmlReport(tc);
+
 
             switch (ObjectRepository.Config.GetBrowser())
             {

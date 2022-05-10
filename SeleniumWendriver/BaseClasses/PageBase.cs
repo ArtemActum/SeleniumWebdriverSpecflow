@@ -26,7 +26,7 @@ namespace SeleniumWendriver.BaseClasses
             //this.driver = _driver;
         }
 
-        protected void Logout()
+        public void Logout()
         {
             if (GenericHelper.IsElementPresent(By.XPath("//div[@id='header']/ul[1]/li[11]/a")))
             {

@@ -67,6 +67,9 @@
     <Reference Include="LivingDoc.SpecFlowPlugin, Version=3.9.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SpecFlow.Plus.LivingDocPlugin.3.9.57\lib\net461\LivingDoc.SpecFlowPlugin.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.14.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.14\lib\net45\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.CodeCoverage.Shim, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeCoverage.17.1.0\lib\net45\Microsoft.VisualStudio.CodeCoverage.Shim.dll</HintPath>
     </Reference>
@@ -102,6 +105,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="TechTalk.SpecFlow, Version=3.9.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
@@ -120,6 +124,7 @@
   <ItemGroup>
     <Compile Include="BaseClasses\BaseClass.cs" />
     <Compile Include="BaseClasses\PageBase.cs" />
+    <Compile Include="ComponentHelper\AssertHelper.cs" />
     <Compile Include="ComponentHelper\BrowserHelper.cs" />
     <Compile Include="ComponentHelper\ButtonHelper.cs" />
     <Compile Include="ComponentHelper\CheckBoxHelper.cs" />
@@ -127,6 +132,7 @@
     <Compile Include="ComponentHelper\GenericHelper.cs" />
     <Compile Include="ComponentHelper\JavaScriptPopHelper.cs" />
     <Compile Include="ComponentHelper\LinkHelper.cs" />
+    <Compile Include="ComponentHelper\Log4NetHelper.cs" />
     <Compile Include="ComponentHelper\NavigationHelper.cs" />
     <Compile Include="ComponentHelper\RadioButtonHelper.cs" />
     <Compile Include="ComponentHelper\TextBoxHelper.cs" />
@@ -139,6 +145,7 @@
     <Compile Include="DataDriven\Script\TestCreateBug.cs" />
     <Compile Include="ExcelReader\ExcelReader.cs" />
     <Compile Include="ExcelReader\TestExcelData.cs" />
+    <Compile Include="GeneralHook\GeneralHook.cs" />
     <Compile Include="Interfaces\IConfig.cs" />
     <Compile Include="Keyword\DataEngine.cs" />
     <Compile Include="PageObject\BugDetail.cs" />
@@ -147,7 +154,10 @@
     <Compile Include="PageObject\LoginPage.cs" />
     <Compile Include="Settings\AppConfigKeys.cs" />
     <Compile Include="Settings\ObjectRepository.cs" />
+    <Compile Include="StepDefinition\Arguments.cs" />
+    <Compile Include="StepDefinition\Hooks.cs" />
     <Compile Include="StepDefinition\TestFeature.cs" />
+    <Compile Include="StepDefinition\TestFeature2.cs" />
     <Compile Include="TestScript\AutoSuggest\TestAutoSuggest.cs" />
     <Compile Include="TestScript\BrowserActions\TestBrowserActions.cs" />
     <Compile Include="TestScript\Button\HandleButton.cs" />
@@ -159,6 +169,7 @@
     <Compile Include="TestScript\HyperLink\TestHyperLink.cs" />
     <Compile Include="TestScript\JavaScript\TestJavaScriptClass.cs" />
     <Compile Include="TestScript\Keyword\TestKeywordDriven.cs" />
+    <Compile Include="TestScript\Log4Net\TestLogger.cs" />
     <Compile Include="TestScript\MouseAction\TestMouseAction.cs" />
     <Compile Include="TestScript\MultipleBrowser\TestMultipleBrowserWindow.cs" />
     <Compile Include="TestScript\PageNavigation\TestPageNavigation.cs" />
@@ -176,7 +187,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="FeatureFiles\Arguments.feature" />
+    <None Include="FeatureFiles\Hooks.feature" />
     <None Include="FeatureFiles\TestFeature.feature" />
+    <None Include="FeatureFiles\TestFeature2.feature" />
     <None Include="packages.config" />
     <None Include="Resources\ExcelData.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

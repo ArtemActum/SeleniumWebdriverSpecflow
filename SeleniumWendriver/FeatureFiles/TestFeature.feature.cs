@@ -165,7 +165,7 @@ this.FeatureBackground();
  testRunner.When("I click on Testng link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 29
- testRunner.Then("User should be at Enter Bug Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("User should be at Enter Bug Pagea", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 30
  testRunner.When("I provide the severity, hardware, platform and summary", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

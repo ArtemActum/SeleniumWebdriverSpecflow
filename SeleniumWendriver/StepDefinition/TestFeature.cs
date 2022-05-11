@@ -34,7 +34,7 @@ namespace SeleniumWendriver.StepDefinition
         [Given(@"File a Bug Should be visible")]
         public void GivenFileABugShouldBeVisible()
         {
-            throw new PendingStepException();
+            Assert.IsTrue(GenericHelper.IsElementPresent(By.Id("enter_bug")));
         }
 
         #endregion 
@@ -44,23 +44,31 @@ namespace SeleniumWendriver.StepDefinition
         [When(@"I click on File a Bug Link")]
         public void WhenIClickOnFileABugLink()
         {
-            hPage = new HomePage(ObjectRepository.Driver);
-            lPage = hPage.NavigateToLogin();
+            ObjectRepository.hPage = new HomePage(ObjectRepository.Driver);
+            ObjectRepository.lPage = ObjectRepository.hPage.NavigateToLogin();
         }
 
         [When(@"I provide the username, password and click on Login button")]
         public void WhenIProvideTheUsernamePasswordAndClickOnLoginButton()
         {
-            ePage = lPage.Login(ObjectRepository.Config.GetUsername(), ObjectRepository.Config.GetPassword());
+            ObjectRepository.ePage = ObjectRepository.lPage.Login(ObjectRepository.Config.GetUsername(), ObjectRepository.Config.GetPassword());
         }
+
+        [When(@"I provide the severity, hardware, platform and summary")]
+        public void WhenIProvideTheSeverityHardwarePlatformAndSummary()
+        {
+            bPage.SelectFromCombo("critical", "Macintosh", "Other");
+            bPage.TypeIn("Summary 1", "Desc - 1");
+        }
+
 
         [When(@"I click on Logout button")]
         public void WhenIClickOnLogoutButton()
         {
-            ePage.Logout();
+            ObjectRepository.ePage.Logout();
         }
 
-        [When(@"I click on  Testng link")]
+        [When(@"I click on Testng link")]
         public void WhenIClickOnTestngLink()
         {
             bPage = ePage.NavigateToDetail();
@@ -101,7 +109,7 @@ namespace SeleniumWendriver.StepDefinition
         [Then(@"User Should be at Bug Detail page")]
         public void ThenUserShouldBeAtBugDetailPage()
         {
-            Assert.AreEqual("Enter Bug: Testng", ObjectRepository.bPage.Title);
+            Assert.AreEqual("Enter Bug: Testng", bPage.Title);
         }
 
 

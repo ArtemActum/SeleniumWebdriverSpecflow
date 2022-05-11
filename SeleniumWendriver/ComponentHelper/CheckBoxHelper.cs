@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using log4net;
+using OpenQA.Selenium;
+
 
 namespace SeleniumWendriver.ComponentHelper
 {
@@ -14,15 +17,15 @@ namespace SeleniumWendriver.ComponentHelper
         {
             element = GenericHelper.GetElement(locator);
             element.Click();
-
+            Logger.Info("Click on Check box : " + locator);
         }
 
         public static bool IsCheckBoxChecked(By locator)
         {
             element = GenericHelper.GetElement(locator);
             string flag = element.GetAttribute("checked");
-
-            if(flag == null)
+            Logger.Info(" Is CheckBox Checked : " + locator);
+            if (flag == null)
                 return false;
             else
             

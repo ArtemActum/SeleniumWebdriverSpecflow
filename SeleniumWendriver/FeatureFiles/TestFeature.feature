@@ -26,7 +26,7 @@ Scenario: Create Bug scenario of Bugzilla
 	When I provide the username, password and click on Login button
 	Then User Should be at Enter Bug page
 	When I click on Testng link
-	Then User should be at Enter Bug Page
+	Then User should be at Enter Bug Pagea
 	When I provide the severity, hardware, platform and summary
 	And click on Submit button
 	Then Bug should get created

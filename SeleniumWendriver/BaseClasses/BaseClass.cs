@@ -97,7 +97,8 @@ namespace SeleniumWendriver.BaseClasses
 
              
 
-        [AssemblyInitialize]
+        //[AssemblyInitialize]
+        //[BeforeScenario()]
         public static void InitWebdriver(TestContext tc)
         {
             ObjectRepository.Config = new AppConfigReader();
@@ -133,7 +134,8 @@ namespace SeleniumWendriver.BaseClasses
             ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeOut());
             BrowserHelper.BrowserMaximize();
         }
-        [AssemblyCleanup]
+        //[AssemblyCleanup]
+        //[BeforeScenario()]
         public static void TearDown()
         {
             if(ObjectRepository.Driver != null)

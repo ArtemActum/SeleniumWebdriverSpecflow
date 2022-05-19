@@ -20,8 +20,6 @@ namespace SeleniumWendriver.TestScript.Button
             LinkHelper.ClickLink(By.LinkText("File a Bug"));
             TextBoxHelper.TypeInTextBox(By.Id("Bugzilla_login"), ObjectRepository.Config.GetUsername());
             TextBoxHelper.TypeInTextBox(By.Id("Bugzilla_password"), ObjectRepository.Config.GetPassword());
-            //IWebElement element = ObjectRepository.Driver.FindElement(By.Id("log_in"));
-            //element.Click();
             Console.WriteLine("Enabled : {0}", ButtonHelper.IsButtonEnabled(By.Id("log_in")));
             Console.WriteLine("Button Text : {0}", ButtonHelper.GetButtonText(By.Id("log_in")));
             ButtonHelper.ClickButton(By.Id("log_in"));

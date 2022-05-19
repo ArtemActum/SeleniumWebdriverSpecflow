@@ -9,7 +9,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
-
 using OpenQA.Selenium.Remote;
 
 using SeleniumWendriver.ComponentHelper;
@@ -29,7 +28,7 @@ namespace SeleniumWendriver.BaseClasses
         {
             FirefoxProfile profile = new FirefoxProfile();
             FirefoxProfileManager manager = new FirefoxProfileManager();
-            profile = manager.GetProfile("default");
+            //profile = manager.GetProfile("default");
             return profile;
         }
 
@@ -39,8 +38,7 @@ namespace SeleniumWendriver.BaseClasses
             option.AddArgument("start-maximized");
             return option;
         }
-
-        private static InternetExplorerOptions GetIEOptions()
+            private static InternetExplorerOptions GetIEOptions()
         {
             InternetExplorerOptions options = new InternetExplorerOptions();
             options.IntroduceInstabilityByIgnoringProtectedModeSettings = true;
@@ -49,15 +47,15 @@ namespace SeleniumWendriver.BaseClasses
             return options;
         }
 
-        private static IWebDriver GetFirefoxDriver()
-        {
-            IWebDriver driver = new FirefoxDriver(/*GetFirefoxOptions()*/);
-          return driver;
-        }
+        //private static IWebDriver /*FirefoxDriver*/ GetFirefoxDriver()
+        //{
+        //  IWebDriver driver = new FirefoxDriver(/*GetFirefoxOptions()*/);
+        //  return driver;
+        //}
 
-        private static IWebDriver GetChromeDriver()
+        private static ChromeDriver GetChromeDriver()
         {
-            IWebDriver driver = new ChromeDriver(GetChromeOptions());
+            /*IWebDriver*/ ChromeDriver driver = new ChromeDriver(GetChromeOptions());
             return driver;
         }
 
@@ -67,50 +65,20 @@ namespace SeleniumWendriver.BaseClasses
             return driver;
         }
 
+        
 
-
-
-
-        //private static PhantomJSDriver GetPhantomJsDriver()
-        //{
-        //    PhantomJSDriver driver = new PhantomJSDriver(GetPhantomJsDriverService());
-        //    return driver;
-        //}
-
-        //private static PhantomJSOptions GetPhantomJSOptions()
-        //{
-        //    PhantomJSOptions option = new PhantomJSOptions();
-        //    option.AddAdditionalCapability("takesScreenshot", false);
-        //    return option;
-        //}
-
-        //private static PhantomJSDriverService GetPhantomJsDriverService()
-        //{
-        //    PhantomJsDriverService service = PhantomJsDriverService.CreateDefaultService();
-        //    service.LogFile = "TestPhantomJS.log";
-        //    service.HideCommandPromptWindow = true;
-        //    return service;
-        //}
-
-
-
-
-             
-
-        //[AssemblyInitialize]
-        //[BeforeScenario()]
+        [AssemblyInitialize]
         public static void InitWebdriver(TestContext tc)
         {
             ObjectRepository.Config = new AppConfigReader();
-            //Reporter.GetReportManager();
-            //Reporter.AddTestCaseMetadataToHtmlReport(tc);
+           
 
 
             switch (ObjectRepository.Config.GetBrowser())
             {
-                case BrowserType.Firefox:
-                    ObjectRepository.Driver = GetFirefoxDriver();
-                    break;
+                //case BrowserType.Firefox:
+                //    ObjectRepository.Driver = GetFirefoxDriver();
+                //    break;
 
                     case BrowserType.Chrome:
                     ObjectRepository.Driver= GetChromeDriver();
@@ -120,22 +88,16 @@ namespace SeleniumWendriver.BaseClasses
                     ObjectRepository.Driver= GetIEDriver();
                     break;
 
-                //case BrowserType.PhantomJs:
-                //    ObjectRepository.Driver= GetPhantomJsDriver();
-                //    break;
-
                 default:
                     throw new NoSuitableDriverFound("Driver Not Found: " + ObjectRepository.Config.GetBrowser().ToString());
             }
-            NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
             ObjectRepository.Driver.Manage()
-                .Timeouts()
-               .PageLoad = TimeSpan.FromSeconds(ObjectRepository.Config.GetPageLoadTimeOut());
+               .Timeouts().PageLoad = TimeSpan.FromSeconds(ObjectRepository.Config.GetPageLoadTimeOut());
             ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeOut());
             BrowserHelper.BrowserMaximize();
         }
-        //[AssemblyCleanup]
-        //[BeforeScenario()]
+
+        [AssemblyCleanup]
         public static void TearDown()
         {
             if(ObjectRepository.Driver != null)

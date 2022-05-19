@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using SeleniumWendriver.BaseClasses;
+using SeleniumWendriver.ComponentHelper;
 using SeleniumWendriver.Settings;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace SeleniumWendriver.PageObject
         private IWebDriver driver;
 
         #region WebElement
+
         [FindsBy(How = How.Id, Using = "Bugzilla_login")]
         private IWebElement LoginTextBox;
 
@@ -37,14 +39,14 @@ namespace SeleniumWendriver.PageObject
         }
 
         #region Actions
-        public EnterBug Login(string username, string password)
+
+        public BugDetail Login(string username, string password)
         {
             LoginTextBox.SendKeys(username);
             PassTextBox.SendKeys(password);
             LoginButton.Click();
-            return new EnterBug(driver);
-            Logout();
-            NavigateToHome();
+            //GenericHelper.WaitForWebElementInPage(By.LinkText("Testng"), TimeSpan.FromSeconds(30));
+            return new BugDetail(driver);
         }
         #endregion
 

@@ -28,7 +28,7 @@ namespace SeleniumWendriver.FeatureFiles
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "TestFeature.feature"
+#line 1 "SpecflowPOM.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
@@ -86,14 +86,14 @@ namespace SeleniumWendriver.FeatureFiles
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Login scenario of Bugzilla")]
+        [NUnit.Framework.DescriptionAttribute("Login Specflow POM")]
         [NUnit.Framework.CategoryAttribute("tag1")]
-        public void LoginScenarioOfBugzilla()
+        public void LoginSpecflowPOM()
         {
             string[] tagsOfScenario = new string[] {
                     "tag1"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login scenario of Bugzilla", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login Specflow POM", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -130,12 +130,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create Bug scenario of Bugzilla")]
-        public void CreateBugScenarioOfBugzilla()
+        [NUnit.Framework.DescriptionAttribute("Create Bug Specflow POM")]
+        public void CreateBugSpecflowPOM()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Bug scenario of Bugzilla", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Bug Specflow POM", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 21
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

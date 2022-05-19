@@ -17,8 +17,8 @@ namespace SeleniumWendriver.TestScript.FileUpload
     public class TestFileUploadAction
     {
         
-        [TestMethod, TestCategory("Smoke")]
-        [DeploymentItem("Resources")]
+        [TestMethod/*, TestCategory("Smoke")*/]
+        //[DeploymentItem("Resources")]
         public void TestUpload()
         {
             NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
@@ -26,30 +26,40 @@ namespace SeleniumWendriver.TestScript.FileUpload
             TextBoxHelper.TypeInTextBox(By.Id("Bugzilla_login"), ObjectRepository.Config.GetUsername());
             TextBoxHelper.TypeInTextBox(By.Id("Bugzilla_password"), ObjectRepository.Config.GetPassword());
             ButtonHelper.ClickButton(By.Id("log_in"));
-            ButtonHelper.ClickButton(By.LinkText("Testng"));
             ButtonHelper.ClickButton(By.XPath("//div[@id='attachment_false']/input"));
+            //Thread.Sleep(1000);
             GenericHelper.WaitForWebElement(By.Id("data"), TimeSpan.FromSeconds(30));
             ButtonHelper.ClickButton(By.Id("data"));
+            //ButtonHelper.ClickButton(By.XPath("/html//input[@id='data']"));
 
-            Console.WriteLine("\"" + Directory.GetCurrentDirectory() + @"\ExcelData.xlsx" + "\"");
+            ////Console.WriteLine("\"" + Directory.GetCurrentDirectory() + @"\ExcelData.xlsx" + "\"");
 
-            var processinfo = new ProcessStartInfo()
-            {
-                FileName = "FileUpload.exe",
-                Arguments = "\"" + Directory.GetCurrentDirectory() + @"ExcelData.xlsx" + "\""
-            };
 
-            //processinfo.FileName = @"C:\Auto\FileUpload\FileUpload.exe";
-            //processinfo.Arguments = @"C:\downloads\ExcelData.xlsx";
+            //var processinfo = new ProcessStartInfo()
+            //{
+            //    FileName = @"C:\Users\artem.mindsadyrov\Downloads\File+Upload\FileUpload.exe",
+            //    Arguments = @"C:\downloads\ExcelData.xlsx"
+            //};
 
-            //Process process = Process.Start(processinfo);
-            //process.WaitForExit();
-            //process.Close();
 
-            using (var process = Process.Start(processinfo))
-            {
-                process.WaitForExit();
-            }
+
+            //using (var process = Process.Start(processinfo))
+            //{
+            //    process.WaitForExit();
+            //}
+
+            ////var processinfo = new ProcessStartInfo()
+            ////{
+            ////    FileName = "FileUpload.exe",
+            ////    Arguments = "\"" + Directory.GetCurrentDirectory() + @"\ExcelData.xlsx" + "\""
+            ////};
+            ProcessStartInfo processinfo = new ProcessStartInfo();
+            processinfo.FileName = @"C:\Users\artem.mindsadyrov\Downloads\File+Upload\FileUpload.exe";
+            processinfo.Arguments = @"C:\downloads\ExcelData.xlsx";
+
+            Process process = Process.Start(processinfo);
+            process.WaitForExit();
+            process.Close();
 
 
             Thread.Sleep(5000);

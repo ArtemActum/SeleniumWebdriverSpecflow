@@ -58,6 +58,7 @@ namespace SeleniumWendriver.ComponentHelper
             }
             ObjectRepository.Driver.SwitchTo().Window(windowids[0]);
 
+
         }
 
         public static void SwitchToFrame(By locatot)

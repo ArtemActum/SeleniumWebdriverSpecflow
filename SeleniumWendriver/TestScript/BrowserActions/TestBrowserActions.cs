@@ -18,13 +18,13 @@ namespace SeleniumWendriver.TestScript.BrowserActions
         public void TestActions()
         {
             NavigationHelper.NavigateToUrl("https://www.udemy.com/course/design-and-develop-a-killer-website-with-html5-and-css3/");
-            Thread.Sleep(1000);
+
             ButtonHelper.ClickButton(By.XPath("(//span[contains(text(),'Teach on Udemy')])[1]"));
-            Thread.Sleep(1000);
+
             BrowserHelper.GoBack();
-            Thread.Sleep(1000);
+
             BrowserHelper.Forward();
-            Thread.Sleep(1000);
+
             BrowserHelper.RefreshPage();
 
             //NavigationHelper.NavigateToUrl("https://www.udemy.com/bdd-with-selenium-webdriver-and-speckflow-using-c/");

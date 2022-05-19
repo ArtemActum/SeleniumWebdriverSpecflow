@@ -30,7 +30,7 @@ namespace SeleniumWendriver.TestScript.HyperLink
                 //pelement.Click();
 
                 LinkHelper.ClickLink(By.LinkText("File a Bug"));
-                LinkHelper.ClickLink(By.PartialLinkText("File"));
+                //LinkHelper.ClickLink(By.PartialLinkText("File"));
             }
 
             catch (Exception exception)

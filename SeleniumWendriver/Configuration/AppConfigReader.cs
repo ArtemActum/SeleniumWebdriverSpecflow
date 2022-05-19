@@ -25,25 +25,9 @@ namespace SeleniumWendriver.Configuration
             }
         }
 
-        public int GetElementLoadTimeout()
-        {
-            string timeout = ConfigurationManager.AppSettings.Get(AppConfigKeys.ElementLoadTimeout);
-            if (timeout == null)
-                return 30;
-            return Convert.ToInt32(timeout);
-        }
-
         public int GetElementLoadTimeOut()
         {
             string timeout = ConfigurationManager.AppSettings.Get(AppConfigKeys.ElementLoadTimeout);
-            if (timeout == null)
-                return 30;
-            return Convert.ToInt32(timeout);
-        }
-
-        public int GetPageLoadTimeout()
-        {
-            string timeout = ConfigurationManager.AppSettings.Get(AppConfigKeys.PageLoadTimeout);
             if (timeout == null)
                 return 30;
             return Convert.ToInt32(timeout);
@@ -56,8 +40,6 @@ namespace SeleniumWendriver.Configuration
                 return 30;
             return Convert.ToInt32(timeout);
         }
-
-   
 
         public string GetPassword()
         {

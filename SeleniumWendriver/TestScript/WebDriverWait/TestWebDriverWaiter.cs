@@ -15,17 +15,18 @@ using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 namespace SeleniumWendriver.TestScript.WebDriverWait
 {
     [TestClass]
-    public class TestWebDriverWait
+    public class TestWebDriverWaiter
     {
         [TestMethod]
         public void TestWait()
         {
             NavigationHelper.NavigateToUrl("https://www.udemy.com/");
-            TextBoxHelper.TypeInTextBox(By.ClassName("udlite-text-input udlite-text-input-small udlite-text-sm udlite-search-form-autocomplete-input js-header-search-field"), "C#");
+            TextBoxHelper.TypeInTextBox(By.XPath("//input[@class='udlite-text-input udlite-text-input-small udlite-text-sm udlite-search-form-autocomplete-input js-header-search-field']"),
+               "C#");
         }
 
 
-        [TestMethod]
+        //[TestMethod]
         //public void TestDynamicWait()
         //{
         //    NavigationHelper.NavigateToUrl("https://www.udemy.com/");
@@ -33,12 +34,12 @@ namespace SeleniumWendriver.TestScript.WebDriverWait
         //    WebDriverWait wait = new WebDriverWait(ObjectRepository.Driver, TimeSpan.FromSeconds(50));
         //    wait.PollingInterval = TimeSpan.FromMilliseconds(250);
         //    wait.IgnoreExceptionTypes(typeof(NoSuchElementException), typeof(ElementNotVisibleException));
-        //    Console.WriteLine(wait.Until(waitforTitle()));
-        //    IWebElement element = wait.Until(waitforElement());
-        //    element.SendKeys("java");
+        //    //Console.WriteLine(wait.Until(waitforTitle()));
+        //    //IWebElement element = wait.Until(waitforElement());
+        //    //element.SendKeys("java");
         //    wait.Until(waitforElement()).SendKeys("health");
         //    ButtonHelper.ClickButton(By.CssSelector(".home-search-btn"));
-        //    wait.Until(waitforLastElemet()).Click();
+        //    wait.Until(waitforLastElement()).Click();
         //    Console.WriteLine("Title : {0}", wait.Until(waitforpageTitle()));
 
         //}
@@ -48,7 +49,7 @@ namespace SeleniumWendriver.TestScript.WebDriverWait
         //{
         //    NavigationHelper.NavigateToUrl("https://www.udemy.com/");
         //    ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = (TimeSpan.FromSeconds(1));
-        //    //WebDriverWait wait = new WebDriverWait(ObjectRepository.Driver, TimeSpan.FromSeconds(50));
+        //    WebDriverWait wait = new WebDriverWait(ObjectRepository.Driver, TimeSpan.FromSeconds(50));
         //    wait.PollingInterval = TimeSpan.FromMilliseconds(250);
         //    wait.IgnoreExceptionTypes(typeof(NoSuchElementException), typeof(ElementNotVisibleException));
         //    wait.Until(ExpectedConditions.ElementExists(By.XPath("//input[@type='search']"))).SendKeys("HTML");
@@ -88,7 +89,7 @@ namespace SeleniumWendriver.TestScript.WebDriverWait
             });
         }
 
-        private Func<IWebDriver, IWebElement> waitforLastElemet()
+        private Func<IWebDriver, IWebElement> waitforLastElement()
         {
             return ((x) =>
             {
@@ -102,6 +103,20 @@ namespace SeleniumWendriver.TestScript.WebDriverWait
                             By.XPath("//span[contains(text(),'These 5 Habits Will Help You Improve Your Health')]"));
                 return null;
             });
+
+        }
+
+        private Func<IWebDriver, string> waitforpageTitle()
+            {
+                return ((x) =>
+                {
+                    Console.WriteLine("Waiting for Title");
+                    if (
+                        x.FindElements(By.CssSelector(".course-title")).Count == 1)
+                        return x.FindElement(By.CssSelector(".course-title")).Text;
+                    return null;
+                });
+            }
         }
     }
-}
+

@@ -12,7 +12,9 @@ namespace SeleniumWendriver.ComponentHelper
 {
     public class CheckBoxHelper
     {
+        private static readonly ILog Logger = Log4NetHelper.GetXmlLogger(typeof(CheckBoxHelper));
         private static IWebElement element;
+
         public static void CheckedCheckBox(By locator)
         {
             element = GenericHelper.GetElement(locator);

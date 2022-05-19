@@ -15,22 +15,25 @@ namespace SeleniumWendriver.ExcelReader
     {
         [TestMethod]
         public void TestReadExcel()
-        {
-            FileStream stream = new FileStream(@"C:\downloads\Cucumber\Data.xlsx", FileMode.Open,FileAccess.Read);
-            IExcelDataReader reader = ExcelReaderFactory.CreateOpenXmlReader(stream);
-            DataTable table = reader.AsDataSet().Tables["Bugzilla"];
-            for (int i = 0; i < table.Rows.Count; i++)
-            {
-                var col = table.Rows[i];
-                for (int j = 0; j < col.ItemArray.Length; j++)
-                {
-                    Console.Write("Data : {0}", col.ItemArray[j]);
-                }
-                Console.WriteLine();
-            }
+        {   // 1 Example
 
+            //FileStream stream = new FileStream(@"C:\downloads\Cucumber\Data.xlsx", FileMode.Open,FileAccess.Read);
+            //IExcelDataReader reader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+            //DataTable table = reader.AsDataSet().Tables["Bugzilla"];
+            ////Console.WriteLine("Data : {0}", table.Rows[0][0]);
+            //for (int i = 0; i < table.Rows.Count; i++)
+            //{
+            //    var col = table.Rows[i];
+            //    for (int j = 0; j < col.ItemArray.Length; j++)
+            //    {
+            //        Console.Write("Data : {0}", col.ItemArray[j]);
+            //    }
+            //    Console.WriteLine();
+            //}
 
-            string xlPath = @"C:\downloads\Test.xlsx";
+            // 2 Example
+
+            string xlPath = @"C:\downloads\Cucumber\Data.xlsx";
             Console.WriteLine(ExcelReaderHelper.GetCellData(xlPath, "Bugzilla", 0, 0));
             Console.WriteLine(ExcelReaderHelper.GetCellData(xlPath, "Bugzilla", 0, 1));
             Console.WriteLine(ExcelReaderHelper.GetCellData(xlPath, "Bugzilla", 0, 2));

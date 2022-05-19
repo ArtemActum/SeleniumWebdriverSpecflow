@@ -26,7 +26,7 @@ namespace SeleniumWendriver.ComponentHelper
         {
             element = GenericHelper.GetElement(locator);
             if (element.GetAttribute("value") == null)
-                return String.Empty;
+                return string.Empty;
             return element.GetAttribute("value");
         }
         public static void Logout()

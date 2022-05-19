@@ -51,11 +51,6 @@ namespace SeleniumWendriver.PageObject
         #endregion
 
         #region Navigation
-        //public LoginPage NavigateToLogin()
-        //{
-        //    FileABugLink.Click();
-        //    return new LoginPage(driver);
-        //}
 
         public LoginPage NavigateToLogin()
         {

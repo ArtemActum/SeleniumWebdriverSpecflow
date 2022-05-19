@@ -62,16 +62,12 @@ namespace SeleniumWendriver.ComponentHelper
             
         }
 
-        
-
         public static IWebElement GetElement(By locator)
         {
-            if(IsElementPresent(locator))
+            if (IsElementPresent(locator))
                 return ObjectRepository.Driver.FindElement(locator);
             else
-            
-                throw new NoSuchElementException("Element Not Found: " + locator.ToString());
-            
+                throw new NoSuchElementException("Element Not Found : " + locator.ToString());
         }
 
         public static void TakeScreenShot(string filename = "Screen")
@@ -85,6 +81,7 @@ namespace SeleniumWendriver.ComponentHelper
             }
             screen.SaveAsFile(filename, ScreenshotImageFormat.Jpeg);
         }
+
         public static void SelecFromAutoSuggest(By autoSuggesLocator, string initialStr, string strToSelect,
             By autoSuggestistLocator)
         {

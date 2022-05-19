@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeleniumWendriver.TestWebElement
+namespace SeleniumWendriver.TestScript.WebElement
 {
     [TestClass]
     public class TestWebElement
@@ -17,7 +17,7 @@ namespace SeleniumWendriver.TestWebElement
         [TestMethod]
         public void GetElement()
         {
-            NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
+            NavigationHelper.NavigateToUrl(@"http://localhost:5001/editparams.cgi");
 
             try
             {
@@ -25,12 +25,17 @@ namespace SeleniumWendriver.TestWebElement
                 Console.WriteLine("Size : {0}", col.Count);
                 Console.WriteLine("Size : {0}", col.ElementAt(0));
 
-                var a = ObjectRepository.Driver.FindElement(By.Name("showmybugslink")).GetAttribute("checked");
+                //var a = ObjectRepository.Driver.FindElement(By.Name("showmybugslink")).GetAttribute("checked");
 
+                //ObjectRepository.Driver.FindElement(By.TagName("input"));
                 //ObjectRepository.Driver.FindElement(By.ClassName("btn"));
                 //ObjectRepository.Driver.FindElement(By.CssSelector("#find"));
-                //ObjectRepository.Driver.FindElement(By.TagName("input"));
-                //ObjectRepository.Driver.FindElement(By.TagName("input"));
+                //ObjectRepository.Driver.FindElement(By.LinkText("File a Bug"));
+                //ObjectRepository.Driver.FindElement(By.PartialLinkText("File"));
+                //ObjectRepository.Driver.FindElement(By.Name("quicksearch"));
+                //ObjectRepository.Driver.FindElement(By.Id("find_bottom"));
+                //ObjectRepository.Driver.FindElement(By.XPath("//input[@id='find']"));
+                
                 //IList<string> list = new List<string>();
                 //list.Add("Task 1");
                 //list.Add("Task 2");
@@ -42,7 +47,7 @@ namespace SeleniumWendriver.TestWebElement
                 //list.Clear();
                 //Console.WriteLine("Size : {0}", list.Count);
             }
-            catch(NoSuchElementException e)
+            catch (NoSuchElementException e)
             {
                 Console.WriteLine(e);
             }

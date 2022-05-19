@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using SeleniumWendriver.ComponentHelper;
 using SeleniumWendriver.PageObject;
 using SeleniumWendriver.Settings;
@@ -11,50 +13,84 @@ namespace SeleniumWendriver.StepDefinition
     {
         private HomePage hPage;
         private LoginPage lPage;
-        private EnterBug ePage;
         private BugDetail bPage;
+
+        private readonly IWebDriver _webDriver;
+
+        public Arguments()
+        {
+            _webDriver = new ChromeDriver();
+        }
 
         #region Given
 
-        [Given(@"User is at Home Page with url in the browser ""([^""]*)""")]
-        // [Given(@"User is at Home Page with url in the browser ""(.*)""")]
-        [Given(@"User is at Home Page with url ""(.*)""")]
-        public void GivenUserIsAtHomePageWithUrl(string url)
+        //[Given(@"User is at Home Page with url in the browser ""([^""]*)""")]
+        ////[Given(@"User is at Home Page with url in the browser ""(.*)""")]
+        //[Given(@"User is at Home Page with url ""(.*)""")]
+        //public void GivenUserIsAtHomePageWithUrl(string url)
+        //{
+        //    //NavigationHelper.NavigateToUrl(url);
+        //    NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
+        //}
+
+        [Given(@"User is at Home Page\.")]
+        public void GivenUserIsAtHomePage_()
         {
-            NavigationHelper.NavigateToUrl(url);
+            //NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
+            _webDriver.Manage().Cookies.DeleteAllCookies();
+            _webDriver.Navigate().GoToUrl("http://localhost:5001/");
+            _webDriver.Manage().Window.Maximize();
         }
+
+
+        //[Given(@"File a Bug Should be visible")]
+        //public void GivenFileABugShouldBeVisible()
+        //{
+        //    Assert.IsTrue(GenericHelper.IsElementPresent(By.Id("enter_bug")));
+        //}
+
+        [Given(@"File a Bug should be visible")]
+        public void GivenFileABugShouldBeVisible()
+        {
+
+            //Assert.IsTrue(GenericHelper.IsElementPresent(By.Id("enter_bug")));
+        }
+
 
         #endregion
 
         #region When
 
-        [When(@"I click on ""(.*)"" Link")]
-        public void WhenIClickOnLink(string linkText)
+        [When(@"I click on File a Bug link")]
+        public void WhenIClickOnFileABugLink()
         {
             hPage = new HomePage(ObjectRepository.Driver);
             lPage = hPage.NavigateToLogin();
         }
+
+
+        //[When(@"I click on ""(.*)"" Link")]
+        //public void WhenIClickOnLink(/*string linkText*/)
+        //{
+        //    ObjectRepository.hPage = new HomePage(ObjectRepository.Driver);
+        //    ObjectRepository.lPage = ObjectRepository.hPage.NavigateToLogin();
+        //}
         
 
 
         [When(@"I provide the ""(.*)"", ""(.*)"" and click on Login button")]
         public void WhenIProvideTheAndClickOnLoginButton(string user, string pass)
         {
-            ePage = lPage.Login(user, pass);
+            ObjectRepository.bPage = ObjectRepository.lPage.Login(user, pass);
         }
 
         [When(@"I click on Logout button at bug detail page")]
-        [When(@"I click on Logout button at enter bug page")]
+        //[When(@"I click on Logout button at enter bug page")]
         public void WhenIClickOnLogoutButtonAtEnterBugPage()
         {
-            ePage.Logout();
+            bPage.Logout();
         }
 
-        [When(@"I click on Testng link in the page")]
-        public void WhenIClickOnTestngLinkInThePage()
-        {
-            ePage.NavigateToDetail();
-        }
 
         [When(@"I provide the severity , hardware , platform , summary and desc")]
         public void WhenIProvideTheSeverityHardwarePlatformSummaryAndDesc(Table table)
@@ -84,19 +120,14 @@ namespace SeleniumWendriver.StepDefinition
         [Then(@"User should be at Login Page with title ""(.*)""")]
         public void ThenUserShouldBeAtLoginPageWithTitle(string title)
         {
-            Assert.AreEqual(title, lPage.Title);
+            Assert.AreEqual(title, ObjectRepository.lPage.Title);
         }
 
-        [Then(@"User Should be at Enter Bug page with title ""(.*)""")]
-        public void ThenUserShouldBeAtEnterBugPageWithTitle(string title)
-        {
-            Assert.AreEqual(title, ePage.Title);
-        }
 
         [Then(@"User Should be at Bug Detail page with title ""([^""]*)""")]
         public void ThenUserShouldBeAtBugDetailPageWithTitle(string title)
         {
-            Assert.AreEqual(title, bPage.Title);
+            Assert.AreEqual(title, ObjectRepository.bPage.Title);
         }
 
 
@@ -105,11 +136,13 @@ namespace SeleniumWendriver.StepDefinition
 
         #region And
 
-        [Given(@"File a Bug should be visible")]
-        public void GivenFileABugShouldBeVisible()
-        {
-            bPage.ClickSubmit();
-        }
+        //[Given(@"File a Bug should be visible")]
+        //public void GivenFileABugShouldBeVisible()
+        //{
+        //    bPage.ClickSubmit();
+        //}
+
+        
 
         [When(@"click on Submit button in page")]
         public void WhenClickOnSubmitButtonInPage()

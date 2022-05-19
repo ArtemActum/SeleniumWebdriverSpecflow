@@ -13,6 +13,7 @@ namespace SeleniumWendriver.Configuration
     //    public BrowserType GetBrowser()
     //    {
     //        throw new NotImplementedException();
+            
     //    }
 
     //    public string GetPassword()
@@ -22,12 +23,12 @@ namespace SeleniumWendriver.Configuration
 
     //    public string GetUsername()
     //    {
-    //        throw new NotImplementedException();
+    //         throw new NotImplementedException();
     //    }
 
     //    public string GetWebsite()
     //    {
-    //        throw new NotImplementedException();
+    //         throw new NotImplementedException();
     //    }
     //}
 }

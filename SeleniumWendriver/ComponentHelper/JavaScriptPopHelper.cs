@@ -35,6 +35,7 @@ namespace SeleniumWendriver.ComponentHelper
             //        return;
             //    ObjectRepository.Driver.SwitchTo().Alert().Accept();
             //}
+
             //public static void ClickCancelOnPopup()
             //{
             //    if (!IsPopupPresent())

@@ -21,10 +21,9 @@ namespace SeleniumWendriver.TestScript.MouseAction
             NavigationHelper.NavigateToUrl("http://demos.telerik.com/kendo-ui/dragdrop/events");
             Actions act = new Actions(ObjectRepository.Driver);
             IWebElement ele = ObjectRepository.Driver.FindElement(By.Id("draggable"));
-            IWebElement cookies = ObjectRepository.Driver.FindElement(By.XPath("//button[contains(text(),'Accept and Close')]"));
 
-            act.Click(cookies)
-                .ContextClick(ele)
+
+            act.ContextClick(ele)
                 .Build()
                 .Perform();
 
@@ -76,30 +75,6 @@ namespace SeleniumWendriver.TestScript.MouseAction
         {
             NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
             Actions act = new Actions(ObjectRepository.Driver);
-            // ctrl + t
-            //act.KeyDown(Keys.LeftControl)
-            //    .SendKeys("t")
-            //    .KeyUp(Keys.LeftControl)
-            //    .Build()
-            //    .Perform();
-
-            // ctrl + shift +a
-
-            //act.KeyDown(Keys.LeftControl)
-            //    .KeyDown(Keys.LeftShift)
-            //    .SendKeys("a")
-            //    .KeyUp(Keys.LeftShift)
-            //    .KeyUp(Keys.LeftControl)
-            //    .Build()
-            //    .Perform();
-
-            // alt + f + x
-
-            //act.KeyDown(Keys.LeftAlt)
-            //    .SendKeys("f")
-            //    .SendKeys("x")
-            //    .Build()
-            //    .Perform();
 
             IWebElement ele1 = ObjectRepository.Driver.FindElement(By.Id("quicksearch_top"));
             IWebElement ele2 = ObjectRepository.Driver.FindElement(By.Id("quicksearch_main"));

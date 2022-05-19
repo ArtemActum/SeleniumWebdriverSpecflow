@@ -45,11 +45,11 @@ namespace SeleniumWendriver.PageObject
 
         #region Action
 
-        public LoginPage SelectFromSeverity(string value)
+        public void SelectFromSeverity(string value)
         {
             ComboBoxHelper.SelectElement(SeverityDropDown, value);
-            return new LoginPage(driver);
         }
+
         public void SelectFromCombo(string severity = null, string hardware = null, string os = null)
         {
             if (severity != null)

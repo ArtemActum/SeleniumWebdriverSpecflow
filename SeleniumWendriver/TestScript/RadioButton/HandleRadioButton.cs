@@ -25,8 +25,6 @@ namespace SeleniumWendriver.TestScript.RadioButton
             ButtonHelper.ClickButton(By.Id("log_in"));
             LinkHelper.ClickLink(By.XPath("//div[@id='header']/ul[1]/li[9]/a"));
             LinkHelper.ClickLink(By.XPath("//dt[@id='parameters']/a"));
-            //IWebElement element = ObjectRepository.Driver.FindElement(By.Id("ssl_redirect-on"));
-            //element.Click();
             Console.WriteLine("Selected : {0}", RadioButtonHelper.IsRadioButtonSelected(By.Id("ssl_redirect-off")));
             RadioButtonHelper.ClickRadioButton(By.Id("ssl_redirect-on"));
         }

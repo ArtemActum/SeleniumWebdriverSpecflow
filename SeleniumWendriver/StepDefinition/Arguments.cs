@@ -13,83 +13,50 @@ namespace SeleniumWendriver.StepDefinition
     {
         private HomePage hPage;
         private LoginPage lPage;
+        private EnterBug ePage;
         private BugDetail bPage;
 
-        private readonly IWebDriver _webDriver;
-
-        public Arguments()
-        {
-            _webDriver = new ChromeDriver();
-        }
 
         #region Given
-
-        //[Given(@"User is at Home Page with url in the browser ""([^""]*)""")]
-        ////[Given(@"User is at Home Page with url in the browser ""(.*)""")]
-        //[Given(@"User is at Home Page with url ""(.*)""")]
-        //public void GivenUserIsAtHomePageWithUrl(string url)
-        //{
-        //    //NavigationHelper.NavigateToUrl(url);
-        //    NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
-        //}
-
-        [Given(@"User is at Home Page\.")]
-        public void GivenUserIsAtHomePage_()
+        
+        [Given(@"User is at Home Page with url ""(.*)""")]
+        public void GivenUserIsAtHomePageWithUrl(string url)
         {
-            //NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
-            _webDriver.Manage().Cookies.DeleteAllCookies();
-            _webDriver.Navigate().GoToUrl("http://localhost:5001/");
-            _webDriver.Manage().Window.Maximize();
+            NavigationHelper.NavigateToUrl(url);
         }
-
-
-        //[Given(@"File a Bug Should be visible")]
-        //public void GivenFileABugShouldBeVisible()
-        //{
-        //    Assert.IsTrue(GenericHelper.IsElementPresent(By.Id("enter_bug")));
-        //}
-
-        [Given(@"File a Bug should be visible")]
-        public void GivenFileABugShouldBeVisible()
-        {
-
-            //Assert.IsTrue(GenericHelper.IsElementPresent(By.Id("enter_bug")));
-        }
-
 
         #endregion
 
         #region When
 
-        [When(@"I click on File a Bug link")]
-        public void WhenIClickOnFileABugLink()
+        [When(@"I click on Testng link in the page")]
+        public void WhenIClickOnTestngLinkInThePage()
         {
-            hPage = new HomePage(ObjectRepository.Driver);
-            lPage = hPage.NavigateToLogin();
+            ObjectRepository.bPage = ObjectRepository.ePage.NavigateToDetail();
         }
 
 
-        //[When(@"I click on ""(.*)"" Link")]
-        //public void WhenIClickOnLink(/*string linkText*/)
-        //{
-        //    ObjectRepository.hPage = new HomePage(ObjectRepository.Driver);
-        //    ObjectRepository.lPage = ObjectRepository.hPage.NavigateToLogin();
-        //}
+        [When(@"I click on ""(.*)"" Link")]
+        public void WhenIClickOnLink(string linkText)
+        {
+            ObjectRepository.hPage = new HomePage(ObjectRepository.Driver);
+            ObjectRepository.lPage = ObjectRepository.hPage.NavigateToLogin();
+        }
         
-
-
         [When(@"I provide the ""(.*)"", ""(.*)"" and click on Login button")]
         public void WhenIProvideTheAndClickOnLoginButton(string user, string pass)
         {
-            ObjectRepository.bPage = ObjectRepository.lPage.Login(user, pass);
+            ObjectRepository.ePage = ObjectRepository.lPage.Login(user, pass);
         }
 
-        [When(@"I click on Logout button at bug detail page")]
-        //[When(@"I click on Logout button at enter bug page")]
+        [When(@"I click on Logout button at enter bug page")]
         public void WhenIClickOnLogoutButtonAtEnterBugPage()
         {
-            bPage.Logout();
+            ObjectRepository.ePage.Logout();
         }
+
+
+
 
 
         [When(@"I provide the severity , hardware , platform , summary and desc")]
@@ -97,25 +64,32 @@ namespace SeleniumWendriver.StepDefinition
         {
             foreach (var row in table.Rows)
             {
-                bPage.SelectFromCombo(row["Severity"], row["Hardware"], row["Platform"]);
-                bPage.TypeIn(row["Summary"], row["Desc"]);
+                ObjectRepository.bPage.SelectFromCombo(row["Severity"], row["Hardware"], row["Platform"]);
+                ObjectRepository.bPage.TypeIn(row["Summary"], row["Desc"]);
             }
+
+
         }
 
-
-        [When(@"I provide the ""([^""]*)"" , ""([^""]*)"" , ""([^""]*)"" , ""([^""]*)"" and ""([^""]*)""")]
+        [When(@"I provide the ""(.*)"" , ""(.*)"" , ""(.*)"" , ""(.*)"" and ""(.*)""")]
         public void WhenIProvideTheAnd(string severity, string hardware, string platform, string summary, string desc)
         {
-            bPage.SelectFromCombo(severity, hardware, platform);
-            bPage.TypeIn(summary, desc);
+            ObjectRepository.bPage.SelectFromCombo(severity, hardware, platform);
+            ObjectRepository.bPage.TypeIn(summary, desc);
         }
-
 
 
 
         #endregion
 
         #region Then
+
+        [Then(@"User Should be at Bug Detail page with title ""(.*)""")]
+        public void ThenUserShouldBeAtBugDetailPageWithTitle(string title)
+        {
+            Assert.AreEqual(title, ObjectRepository.bPage.Title);
+        }
+
 
         [Then(@"User should be at Login Page with title ""(.*)""")]
         public void ThenUserShouldBeAtLoginPageWithTitle(string title)
@@ -124,11 +98,12 @@ namespace SeleniumWendriver.StepDefinition
         }
 
 
-        [Then(@"User Should be at Bug Detail page with title ""([^""]*)""")]
-        public void ThenUserShouldBeAtBugDetailPageWithTitle(string title)
+        [Then(@"User Should be at Enter Bug page with title ""(.*)""")]
+        public void ThenUserShouldBeAtEnterBugPageWithTitle(string title)
         {
-            Assert.AreEqual(title, ObjectRepository.bPage.Title);
+            Assert.AreEqual(title, ObjectRepository.ePage.Title);
         }
+
 
 
 
@@ -136,18 +111,18 @@ namespace SeleniumWendriver.StepDefinition
 
         #region And
 
-        //[Given(@"File a Bug should be visible")]
-        //public void GivenFileABugShouldBeVisible()
-        //{
-        //    bPage.ClickSubmit();
-        //}
+        [Given(@"File a Bug should be visible")]
+        public void GivenFileABugShouldBeVisible()
+        {
+            Assert.IsTrue(GenericHelper.IsElementPresent(By.Id("enter_bug")));
+        }
 
-        
+
 
         [When(@"click on Submit button in page")]
         public void WhenClickOnSubmitButtonInPage()
         {
-            bPage.ClickSubmit();
+            ObjectRepository.bPage.ClickSubmit();
         }
 
 

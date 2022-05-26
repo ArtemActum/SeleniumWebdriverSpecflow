@@ -16,7 +16,7 @@ namespace SeleniumWendriver
         [TestMethod]
         public void TestMethod1()
         {
-            NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
+            //NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
             Console.WriteLine("Test");
             
 

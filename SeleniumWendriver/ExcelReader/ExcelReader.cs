@@ -43,20 +43,6 @@ namespace SeleniumWendriver.ExcelReader
 
         public static object GetCellData(string xlPath, string sheetName, int row, int column)
         {
-            //if (_cache.ContainsKey(sheetName))
-            //{
-            //    reader = _cache[sheetName];
-            //}
-            //else
-            //{
-            //    stream = new FileStream(xlPath, FileMode.Open, FileAccess.Read);
-            //    reader = ExcelReaderFactory.CreateOpenXmlReader(stream);
-            //    _cache.Add(sheetName, reader);
-            //}
-            //DataTable table = reader.AsDataSet().Tables[sheetName];
-            //return GetData(table.Rows[row][column].GetType(),table.Rows[row][column]);
-            //return table.Rows[row][column];
-
             IExcelDataReader _reader = GetExcelReader(xlPath, sheetName);
             DataTable table = _reader.AsDataSet().Tables[sheetName];
             return table.Rows[row][column];

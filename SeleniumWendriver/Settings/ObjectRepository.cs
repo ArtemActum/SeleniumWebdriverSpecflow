@@ -16,7 +16,7 @@ namespace SeleniumWendriver.Settings
 
         public static HomePage hPage;
         public static LoginPage lPage;
-
+        public static EnterBug ePage;
         public static BugDetail bPage;
     }
 }

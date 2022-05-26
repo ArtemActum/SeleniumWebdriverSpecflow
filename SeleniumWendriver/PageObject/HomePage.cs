@@ -32,6 +32,10 @@ namespace SeleniumWendriver.PageObject
         [FindsBy(How = How.LinkText, Using = "File a Bug")]
         private IWebElement FileABugLink;
 
+        //private By QuickSearchTextBox = By.Id("quicksearch_main");
+        //private By QuickSearchBtn = By.Id("find");
+        //private By FileABugLink = By.LinkText("File a Bug");
+
 
 
         #endregion
@@ -46,6 +50,9 @@ namespace SeleniumWendriver.PageObject
         {
             QuickSearchTextBox.SendKeys(text);
             QuickSearchBtn.Click();
+
+            //ObjectRepository.Driver.FindElement(QuickSearchTextBox).SendKeys(text);
+            //ObjectRepository.Driver.FindElement(QuickSearchBtn).Click();
         }
 
         #endregion
@@ -57,6 +64,8 @@ namespace SeleniumWendriver.PageObject
             FileABugLink.Click();
             GenericHelper.WaitForWebElementInPage(By.Id("log_in"), TimeSpan.FromSeconds(30));
             return new LoginPage(driver);
+
+            //ObjectRepository.Driver.FindElement(FileABugLink).Click();
         }
 
         #endregion

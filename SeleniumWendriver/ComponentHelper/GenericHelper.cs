@@ -98,7 +98,7 @@ namespace SeleniumWendriver.ComponentHelper
 
         public static WebDriverWait GetWebdriverWait(TimeSpan timeout)
         {
-            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = (TimeSpan.FromSeconds(1));
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
             WebDriverWait wait = new WebDriverWait(ObjectRepository.Driver, timeout)
             {
                 PollingInterval = TimeSpan.FromMilliseconds(500),
@@ -109,43 +109,45 @@ namespace SeleniumWendriver.ComponentHelper
 
         public static bool WaitForWebElement(By locator, TimeSpan timeout)
         {
-            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = (TimeSpan.FromSeconds(1));
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
             var wait = GetWebdriverWait(timeout);
             var flag = wait.Until(WaitForWebElementFunc(locator));
-            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = (TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeOut()));
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeOut());
             return flag;
         }
 
         public static IWebElement WaitForWebElementVisisble(By locator, TimeSpan timeout)
         {
-            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = (TimeSpan.FromSeconds(1));
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
 
             var wait = GetWebdriverWait(timeout);
             var flag = wait.Until(ExpectedConditions.ElementIsVisible(locator));
-            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = (TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeOut()));
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeOut());
 
             return flag;
         }
         public static IWebElement WaitForWebElementInPage(By locator, TimeSpan timeout)
         {
-            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = (TimeSpan.FromSeconds(1));
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
             
             var wait = GetWebdriverWait(timeout);
             var flag = wait.Until(WaitForWebElementInPageFunc(locator));
             
-            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = (TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeOut()));
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeOut());
             return flag;
         }
 
 
+
+
         public static IWebElement Wait(Func<IWebDriver, IWebElement> conditions, TimeSpan timeout)
         {
-            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = (TimeSpan.FromSeconds(1));
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
 
             var wait = GetWebdriverWait(timeout);
             var flag = wait.Until(conditions);
 
-            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = (TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeOut()));
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeOut());
             return flag;
         }
     }

@@ -17,7 +17,7 @@ namespace SeleniumWendriver.TestScript.FileUpload
     public class TestFileUploadAction
     {
         
-        [TestMethod/*, TestCategory("Smoke")*/]
+        [TestMethod,TestCategory("Smoke")]
         //[DeploymentItem("Resources")]
         public void TestUpload()
         {

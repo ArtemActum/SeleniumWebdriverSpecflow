@@ -1,4 +1,4 @@
-﻿Feature: Login and create Bug Feature of the Bugzilla web page
+﻿Feature: SpecflowPOM
 
 A short summary of the feature
 
@@ -14,7 +14,7 @@ Scenario: Login Specflow POM
 	When I click on File a Bug Link
 	Then User should be at Login Page
 	When I provide the username, password and click on Login button
-	Then User should be at Bug Detail Page 
+	Then User Should be at Enter Bug page
 	When I click on Logout button
 	Then User should be logged out and should be at Home Page
 
@@ -23,10 +23,11 @@ Scenario: Create Bug Specflow POM
 	When I click on File a Bug Link
 	Then User should be at Login Page
 	When I provide the username, password and click on Login button
+	Then User Should be at Enter Bug page
+	When I click on Testng link
 	Then User should be at Bug Detail Page
 	When I provide the severity, hardware, platform and summary
 	And click on Submit button
 	Then Bug should get created
-	And User should be at Search Page
 	When I click on Logout button
 	Then User should be logged out and should be at Home Page

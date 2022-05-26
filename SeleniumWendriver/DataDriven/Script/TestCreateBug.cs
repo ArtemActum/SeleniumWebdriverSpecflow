@@ -29,7 +29,8 @@ namespace SeleniumWendriver.DataDriven.Script
             NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
             HomePage hpPage = new HomePage(ObjectRepository.Driver);
             LoginPage loginPage = hpPage.NavigateToLogin();
-            BugDetail bugPage = loginPage.Login(ObjectRepository.Config.GetUsername(), ObjectRepository.Config.GetPassword());
+            var ePage = loginPage.Login(ObjectRepository.Config.GetUsername(), ObjectRepository.Config.GetPassword());
+            var bugPage = ePage.NavigateToDetail();
             bugPage.SelectFromCombo("critical", "Macintosh", "Other");
             bugPage.TypeIn("Summary one", "Description one");
             bugPage.ClickSubmit();
@@ -45,7 +46,8 @@ namespace SeleniumWendriver.DataDriven.Script
             NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
             HomePage hpPage = new HomePage(ObjectRepository.Driver);
             LoginPage loginPage = hpPage.NavigateToLogin();
-            BugDetail bugPage = loginPage.Login(ObjectRepository.Config.GetUsername(), ObjectRepository.Config.GetPassword());
+            var ePage = loginPage.Login(ObjectRepository.Config.GetUsername(), ObjectRepository.Config.GetPassword());
+            var bugPage = ePage.NavigateToDetail();
             bugPage.SelectFromCombo(TestContext.DataRow["Severity"].ToString(), TestContext.DataRow["HardWare"].ToString(), TestContext.DataRow["OS"].ToString());
             bugPage.TypeIn(TestContext.DataRow["Summary"].ToString(), TestContext.DataRow["Desc"].ToString());
             bugPage.ClickSubmit();
@@ -54,37 +56,19 @@ namespace SeleniumWendriver.DataDriven.Script
         }
 
         [TestMethod]
-        public void TestBugDdF()
+        public void TestBugXlsx()
         {
             string xlPath = @"C:\downloads\ExcelData.xlsx";
             NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
             HomePage hpPage = new HomePage(ObjectRepository.Driver);
             LoginPage loginPage = hpPage.NavigateToLogin();
-            BugDetail bugPage = loginPage.Login(ObjectRepository.Config.GetUsername(), ObjectRepository.Config.GetPassword());
+            var ePage = loginPage.Login(ObjectRepository.Config.GetUsername(), ObjectRepository.Config.GetPassword());
+            var bugPage = ePage.NavigateToDetail();
             bugPage.SelectFromCombo(ExcelReaderHelper.GetCellData(xlPath, "TestExcelData", 1, 0).ToString(), ExcelReaderHelper.GetCellData(xlPath, "TestExcelData", 1, 1).ToString(), ExcelReaderHelper.GetCellData(xlPath, "TestExcelData", 1, 2).ToString());
             bugPage.TypeIn(ExcelReaderHelper.GetCellData(xlPath, "TestExcelData", 1, 3).ToString(), ExcelReaderHelper.GetCellData(xlPath, "TestExcelData", 1, 4).ToString());
             bugPage.ClickSubmit();
             bugPage.Logout();
             Thread.Sleep(5000);
         }
-
-        //[TestMethod]
-        
-        //[DataSource("System.Data.Odbc", @"Dsn=Excel Files;dbq=C:\downloads\ExcelData.xlsx;", "TestExcelData$", DataAccessMethod.Sequential)]
-        ////[DeploymentItem(@"DataDriven\TestDataFiles", @"DataDriven\TestDataFiles")]
-
-        //public void TestBugFromXlsx()
-        //{
-        //    NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
-        //    HomePage hpPage = new HomePage(ObjectRepository.Driver);
-        //    LoginPage loginPage = hpPage.NavigateToLogin();
-        //    BugDetail bugPage = loginPage.Login(ObjectRepository.Config.GetUsername(), ObjectRepository.Config.GetPassword());
-        //    bugPage.SelectFromCombo(TestContext.DataRow["Severity"].ToString(), TestContext.DataRow["HardWare"].ToString(), TestContext.DataRow["OS"].ToString());
-        //    bugPage.TypeIn(TestContext.DataRow["Summary"].ToString(), TestContext.DataRow["Desc"].ToString());
-        //    bugPage.ClickSubmit();
-        //    bugPage.Logout();
-        //    Thread.Sleep(5000);
-        //}
-
     }
 }

@@ -12,7 +12,7 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
-namespace SeleniumWendriver.TestScript.WebDriverWait
+namespace SeleniumWendriver.TestScript.WebDriverWaiter
 {
     [TestClass]
     public class TestWebDriverWaiter
@@ -20,52 +20,50 @@ namespace SeleniumWendriver.TestScript.WebDriverWait
         [TestMethod]
         public void TestWait()
         {
+
             NavigationHelper.NavigateToUrl("https://www.udemy.com/");
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait =  TimeSpan.FromSeconds(50);
             TextBoxHelper.TypeInTextBox(By.XPath("//input[@class='udlite-text-input udlite-text-input-small udlite-text-sm udlite-search-form-autocomplete-input js-header-search-field']"),
                "C#");
         }
 
 
-        //[TestMethod]
-        //public void TestDynamicWait()
-        //{
-        //    NavigationHelper.NavigateToUrl("https://www.udemy.com/");
-        //    ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = (TimeSpan.FromSeconds(1));
-        //    WebDriverWait wait = new WebDriverWait(ObjectRepository.Driver, TimeSpan.FromSeconds(50));
-        //    wait.PollingInterval = TimeSpan.FromMilliseconds(250);
-        //    wait.IgnoreExceptionTypes(typeof(NoSuchElementException), typeof(ElementNotVisibleException));
-        //    //Console.WriteLine(wait.Until(waitforTitle()));
-        //    //IWebElement element = wait.Until(waitforElement());
-        //    //element.SendKeys("java");
-        //    wait.Until(waitforElement()).SendKeys("health");
-        //    ButtonHelper.ClickButton(By.CssSelector(".home-search-btn"));
-        //    wait.Until(waitforLastElement()).Click();
-        //    Console.WriteLine("Title : {0}", wait.Until(waitforpageTitle()));
+        [TestMethod]
+        public void TestDynamicWait()
+        {
+            NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1); 
+            WebDriverWait wait = new WebDriverWait(ObjectRepository.Driver, TimeSpan.FromSeconds(50)); // Create the object of our WebDriverWait class
+            wait.PollingInterval = TimeSpan.FromMilliseconds(250);
+            wait.IgnoreExceptionTypes(typeof(NoSuchElementException), typeof(ElementNotVisibleException));
+            wait.Until(waitforElement()).SendKeys("health");
+            ButtonHelper.ClickButton(By.XPath("/html//input[@id='find_top']"));
+            wait.Until(waitforLastElement()).Click();
+            Console.WriteLine("Title : {0}", wait.Until(waitforpageTitle()));
+        }
 
-        //}
-
-        //[TestMethod]
-        //public void TestExpCondition()
-        //{
-        //    NavigationHelper.NavigateToUrl("https://www.udemy.com/");
-        //    ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = (TimeSpan.FromSeconds(1));
-        //    WebDriverWait wait = new WebDriverWait(ObjectRepository.Driver, TimeSpan.FromSeconds(50));
-        //    wait.PollingInterval = TimeSpan.FromMilliseconds(250);
-        //    wait.IgnoreExceptionTypes(typeof(NoSuchElementException), typeof(ElementNotVisibleException));
-        //    wait.Until(ExpectedConditions.ElementExists(By.XPath("//input[@type='search']"))).SendKeys("HTML");
-        //    ButtonHelper.ClickButton(By.CssSelector(".home-search-btn"));
-        //    wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@id='courses']/li[12]/a/div[2]/div[1]/div/span"))).Click();
-        //    Console.WriteLine("Title : {0}", wait.Until(ExpectedConditions.TitleContains("u")));
-        //    wait.Until(ExpectedConditions.ElementExists(By.XPath("//a[contains(text(),'Login')]"))).Click();
-        //    wait.Until(ExpectedConditions.ElementExists(By.XPath("//div[@class='loginbox-v4 js-signin-box']")));
-        //}
+        [TestMethod]
+        public void TestExpCondition()
+        {
+            NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
+            WebDriverWait wait = new WebDriverWait(ObjectRepository.Driver, TimeSpan.FromSeconds(50)); // Create the object of our WebDriverWait class
+            wait.PollingInterval = TimeSpan.FromMilliseconds(250);
+            wait.IgnoreExceptionTypes(typeof(NoSuchElementException), typeof(ElementNotVisibleException));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("/html//input[@id='quicksearch_top']"))).SendKeys("html");
+            ButtonHelper.ClickButton(By.XPath("/html//input[@id='find_top']"));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//div[@id='bugzilla-body']/ul[@class='zero_result_links']//a[@href='enter_bug.cgi']"))).Click();
+            Console.WriteLine("Title : {0}", wait.Until(ExpectedConditions.TitleContains("u")));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//div[@id='header']/ul[@class='links']//a[@href='report.cgi']"))).Click();
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//div[@id='bugzilla-body']/h2[.='Current State']")));
+        }
 
         private Func<IWebDriver, bool> waitforSearchbox()
         {
             return ((x) =>
              {
                  Console.WriteLine("Waiting for Search Box");
-                 return x.FindElements(By.XPath("//input[@class='udlite-text-input udlite-text-input-small udlite-text-sm udlite-search-form-autocomplete-input js-header-search-field']")).Count == 1;
+                 return x.FindElements(By.XPath("/html//input[@id='quicksearch_top']")).Count == 1;
              });
         }
 
@@ -73,7 +71,9 @@ namespace SeleniumWendriver.TestScript.WebDriverWait
         {
             return ((x) =>
             {
-                if (x.Title.Contains("Main"))
+                
+                if (x.Title.Contains("Bug List"))
+                    
                     return x.Title;
                 return null;
             });
@@ -83,8 +83,8 @@ namespace SeleniumWendriver.TestScript.WebDriverWait
             return ((x) =>
             {
                 Console.WriteLine("Waiting for element");
-                if (x.FindElements(By.XPath("//input[@class='udlite-text-input udlite-text-input-small udlite-text-sm udlite-search-form-autocomplete-input js-header-search-field']")).Count == 1)
-                    return x.FindElement(By.XPath("//input[@class='udlite-text-input udlite-text-input-small udlite-text-sm udlite-search-form-autocomplete-input js-header-search-field']"));
+                if (x.FindElements(By.XPath("/html//input[@id='quicksearch_top']")).Count == 1)
+                    return x.FindElement(By.XPath("/html//input[@id='quicksearch_top']"));
                 return null;
             });
         }
@@ -96,11 +96,11 @@ namespace SeleniumWendriver.TestScript.WebDriverWait
                 Console.WriteLine("Waiting for Last Element");
                 if (
                     x.FindElements(
-                        By.XPath("//span[contains(text(),'These 5 Habits Will Help You Improve Your Health')]")).Count ==
+                        By.XPath("//div[@id='bugzilla-body']/ul[@class='zero_result_links']//a[@href='enter_bug.cgi']")).Count ==
                     1)
                     return
                         x.FindElement(
-                            By.XPath("//span[contains(text(),'These 5 Habits Will Help You Improve Your Health')]"));
+                            By.XPath("//div[@id='bugzilla-body']/ul[@class='zero_result_links']//a[@href='enter_bug.cgi']"));
                 return null;
             });
 
@@ -112,8 +112,8 @@ namespace SeleniumWendriver.TestScript.WebDriverWait
                 {
                     Console.WriteLine("Waiting for Title");
                     if (
-                        x.FindElements(By.CssSelector(".course-title")).Count == 1)
-                        return x.FindElement(By.CssSelector(".course-title")).Text;
+                        x.FindElements(By.CssSelector("#title p")).Count == 1)
+                        return x.FindElement(By.CssSelector("#title p")).Text;
                     return null;
                 });
             }

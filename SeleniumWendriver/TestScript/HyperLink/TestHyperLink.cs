@@ -22,6 +22,9 @@ namespace SeleniumWendriver.TestScript.HyperLink
             try
             {
                 NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
+                LinkHelper.ClickLink(By.LinkText("File a Bug"));
+
+                //LinkHelper.ClickLink(By.PartialLinkText("File"));
 
                 //IWebElement element = ObjectRepository.Driver.FindElement(By.LinkText("File a Bug"));
                 //element.Click();
@@ -29,8 +32,7 @@ namespace SeleniumWendriver.TestScript.HyperLink
                 //IWebElement pelement = ObjectRepository.Driver.FindElement(By.PartialLinkText("File"));
                 //pelement.Click();
 
-                LinkHelper.ClickLink(By.LinkText("File a Bug"));
-                //LinkHelper.ClickLink(By.PartialLinkText("File"));
+
             }
 
             catch (Exception exception)

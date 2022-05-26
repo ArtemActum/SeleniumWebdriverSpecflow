@@ -23,19 +23,10 @@ namespace SeleniumWendriver.TestScript.PageObject
             NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
             HomePage homePage = new HomePage(ObjectRepository.Driver);
             LoginPage loginPage = homePage.NavigateToLogin();
-            BugDetail enterBug = loginPage.Login(ObjectRepository.Config.GetUsername(), ObjectRepository.Config.GetPassword());
-            enterBug.SelectFromSeverity("trivial");
+            EnterBug enterBug = loginPage.Login(ObjectRepository.Config.GetUsername(), ObjectRepository.Config.GetPassword());
+            BugDetail bugDetail = enterBug.NavigateToDetail();
+            bugDetail.SelectFromSeverity("trivial");
             ButtonHelper.ClickButton(By.XPath("//div[@id='header']/ul[1]/li[11]/a"));
-
-            //NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
-            //HomePage homePage = new HomePage(ObjectRepository.Driver);
-            //Console.WriteLine(DisplayElementName(homePage, "homePage.QuickSearchTextBox"));
-            //LoginPage loginPage = homePage.NavigateToLogin();
-            //BugDetail bugDetail = loginPage.Login(ObjectRepository.Config.GetUsername(), ObjectRepository.Config.GetPassword());
-            //////BugDetail bugDetail = enterBug.NavigateToDetail();
-            //bugDetail.SelectFromSeverity("trivial");
-            ////// ButtonHelper.ClickButton(By.XPath("//div[@id='header']/ul[1]/li[11]/a"));
-            //ButtonHelper.Logout();
         }
 
         public string DisplayElementName(PageBase aPageInstance, string element)

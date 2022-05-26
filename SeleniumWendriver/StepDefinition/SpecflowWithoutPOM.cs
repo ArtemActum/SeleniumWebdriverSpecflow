@@ -19,19 +19,16 @@ namespace SeleniumWendriver.StepDefinition
         private readonly By _enterButton = By.XPath("/html//input[@id='log_in']");
         private readonly By _logoutButton = By.XPath("//div[@id='header']/ul[@class='links']//a[@href='index.cgi?logout=1']");
         private readonly By _exploreButton = By.XPath("//a[@id='enter_bug']/span[.='File a Bug']");
-        private readonly By _exploreTextBugPage = By.XPath("//td[@id='title']/p[.='Bugzilla – Enter Bug: TestProduct']");
+        private readonly By _exploreTextBugPage = By.XPath("/html//title[.='Enter Bug']");
         private readonly By _exploreTextHomePage = By.XPath("/html//h1[@id='welcome']");
         private readonly By _submitButton = By.XPath("/html//input[@id='commit']");
         private readonly By _statusOfBug = By.XPath("/html//span[@id='static_bug_status']");
         private readonly By _summary = By.XPath("/html//input[@id='short_desc']");
+        private readonly By _testNG = By.XPath("//div[@id='bugzilla-body']/table/tbody/tr[1]/th/a[@href='enter_bug.cgi?product=Testng']");
+        private readonly By _exploreTextLoginPage = By.XPath("/html//title[.='Log in to Bugzilla']");
+        private readonly By _exploreTextBugDetail = By.XPath("/html//title[.='Enter Bug: Testng']");
 
 
-
-
-
-        private HomePage hPage;
-        private LoginPage lPage;
-        private BugDetail bPage;
 
 
         public SpecflowWithoutPOM()
@@ -52,6 +49,14 @@ namespace SeleniumWendriver.StepDefinition
         #endregion
 
         #region When
+
+        [When(@"I click on Testng link\.")]
+        public void WhenIClickOnTestngLink_()
+        {
+            _webDriver.FindElement(_testNG).Click();
+        }
+
+
 
         [When(@"I click on File a Bug Link\.")]
         public void WhenIClickOnFileABugLink_()
@@ -94,15 +99,24 @@ namespace SeleniumWendriver.StepDefinition
         [Then(@"User should be at Login Page\.")]
         public void ThenUserShouldBeAtLoginPage_()
         {
-
+            _webDriver.FindElement(_exploreTextLoginPage).GetAttribute("id").Contains("title");
         }
-
 
         [Then(@"User should be at Bug Detail Page\.")]
         public void ThenUserShouldBeAtBugDetailPage_()
         {
+            _webDriver.FindElement(_exploreTextBugDetail).GetAttribute("id").Contains("title");
+        }
+
+
+
+        [Then(@"User should be at Enter Bug Page\.")]
+        public void ThenUserShouldBeAtEnterBugPage_()
+        {
             _webDriver.FindElement(_exploreTextBugPage).GetAttribute("id").Contains("title");
         }
+
+
 
         [Then(@"Bug should get created\.")]
         public void ThenBugShouldGetCreated_()

@@ -21,7 +21,8 @@ using TechTalk.SpecFlow;
 
 namespace SeleniumWendriver.BaseClasses
 {
-    [TestClass]
+    //[TestClass]
+    [Binding]
     public class BaseClass
     {
         private static FirefoxProfile GetFirefoxOptions()
@@ -67,8 +68,9 @@ namespace SeleniumWendriver.BaseClasses
 
         
 
-        [AssemblyInitialize]
-        public static void InitWebdriver(TestContext tc)
+        //[AssemblyInitialize]
+        [BeforeTestRun]
+        public static void InitWebdriver(/*TestContext tc*/)
         {
             ObjectRepository.Config = new AppConfigReader();
            
@@ -91,13 +93,15 @@ namespace SeleniumWendriver.BaseClasses
                 default:
                     throw new NoSuitableDriverFound("Driver Not Found: " + ObjectRepository.Config.GetBrowser().ToString());
             }
-            ObjectRepository.Driver.Manage()
-               .Timeouts().PageLoad = TimeSpan.FromSeconds(ObjectRepository.Config.GetPageLoadTimeOut());
+            ObjectRepository.Driver.Manage().Cookies.DeleteAllCookies();
+            ObjectRepository.Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(ObjectRepository.Config.GetPageLoadTimeOut());
             ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeOut());
+            ObjectRepository.Driver.Manage().Cookies.DeleteAllCookies();
             BrowserHelper.BrowserMaximize();
         }
 
-        [AssemblyCleanup]
+        //[AssemblyCleanup]
+        [AfterTestRun]
         public static void TearDown()
         {
             if(ObjectRepository.Driver != null)

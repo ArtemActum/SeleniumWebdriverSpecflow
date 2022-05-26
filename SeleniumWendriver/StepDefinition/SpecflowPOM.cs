@@ -17,9 +17,10 @@ namespace SeleniumWendriver.StepDefinition
     {
         private HomePage hPage;
         private LoginPage lPage;
+        private EnterBug ePage;
         private BugDetail bPage;
 
-        private readonly IWebDriver _webDriver;
+        
 
         #region Given
 
@@ -44,12 +45,14 @@ namespace SeleniumWendriver.StepDefinition
         {
             ObjectRepository.hPage = new HomePage(ObjectRepository.Driver);
             ObjectRepository.lPage = ObjectRepository.hPage.NavigateToLogin();
+            lPage = ObjectRepository.lPage;
         }
 
         [When(@"I provide the username, password and click on Login button")]
         public void WhenIProvideTheUsernamePasswordAndClickOnLoginButton()
         {
-            bPage = lPage.Login(ObjectRepository.Config.GetUsername(), ObjectRepository.Config.GetPassword());
+            ePage = lPage.Login(ObjectRepository.Config.GetUsername(), ObjectRepository.Config.GetPassword());
+            ObjectRepository.ePage = ePage;
         }
 
         [When(@"I provide the severity, hardware, platform and summary")]
@@ -59,18 +62,22 @@ namespace SeleniumWendriver.StepDefinition
             bPage.TypeIn("Summary 1", "Desc - 1");
         }
 
-        [When(@"I click on Logout button at Bug Detail Page")]
-        public void WhenIClickOnLogoutButtonAtBugDetailPage()
-        {
-            ObjectRepository.bPage.Logout();
-        }
-
-
+        [When(@"I click on Logout button at bug detail page")]
         [When(@"I click on Logout button")]
         public void WhenIClickOnLogoutButton()
         {
-            ObjectRepository.bPage.Logout();
+            ObjectRepository.ePage.Logout();
         }
+
+
+
+        [When(@"I click on Testng link")]
+        public void WhenIClickOnTestngLink()
+        {
+            bPage = ePage.NavigateToDetail();
+        }
+
+
 
 
         [When(@"I provide the severity , harware , platform and summary")]
@@ -86,6 +93,17 @@ namespace SeleniumWendriver.StepDefinition
 
         #region Then
 
+ 
+
+        [Then(@"User should be at Bug Detail Page")]
+        public void ThenUserShouldBeAtBugDetailPage()
+        {
+            //Assert.AreEqual("Enter Bug: Testng", ObjectRepository.bPage.Title);
+            Assert.IsTrue(GenericHelper.IsElementPresent(By.Id("bugzilla-body")));
+        }
+
+
+
         [Then(@"User should be at Login Page")]
         public void ThenUserShouldBeAtLoginPage()
         {
@@ -93,26 +111,17 @@ namespace SeleniumWendriver.StepDefinition
 
         }
 
-        [Then(@"User Should be at Bug Detail Page with title ""([^""]*)""")]
-        public void ThenUserShouldBeAtBugDetailPageWithTitle(string p0)
+
+
+
+
+
+        [Then(@"User Should be at Enter Bug page")]
+        public void ThenUserShouldBeAtEnterBugPage()
         {
-            Assert.AreEqual("Enter Bug", ObjectRepository.bPage.Title);
+            Assert.AreEqual("Enter Bug", ObjectRepository.ePage.Title);
         }
 
-
-
-        [Then(@"User should be logged out and should be at Home Page")]
-        public void ThenUserShouldBeLoggedOutAndShouldBeAtHomePage()
-        {
-            Assert.IsTrue(GenericHelper.IsElementPresent(By.Id("welcome")));
-        }
-
-
-        [Then(@"User should be at Bug Detail Page")]
-        public void ThenUserShouldBeAtBugDetailPage()
-        {
-            Assert.AreEqual("Enter Bug", ObjectRepository.bPage.Title);
-        }
 
 
         [Then(@"Bug should get created")]
@@ -122,6 +131,18 @@ namespace SeleniumWendriver.StepDefinition
         }
 
 
+        [Then(@"User should be logged out and should be at Home Page")]
+        public void ThenUserShouldBeLoggedOutAndShouldBeAtHomePage()
+        {
+            Assert.IsTrue(GenericHelper.IsElementPresent(By.Id("welcome")));
+        }
+
+
+        [Then(@"User Should be at Bug Detail Page with title ""([^""]*)""")]
+        public void ThenUserShouldBeAtBugDetailPageWithTitle(string p0)
+        {
+            Assert.AreEqual("Enter Bug", ObjectRepository.bPage.Title);
+        }
         #endregion
 
         #region And
@@ -131,13 +152,6 @@ namespace SeleniumWendriver.StepDefinition
         {
             bPage.ClickSubmit();
         }
-
-        [Then(@"User should be at Search Page")]
-        public void ThenUserShouldBeAtSearchPage()
-        {
-
-        }
-
 
         #endregion
 

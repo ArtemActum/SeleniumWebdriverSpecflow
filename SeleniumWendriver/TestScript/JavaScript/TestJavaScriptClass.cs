@@ -24,5 +24,17 @@ namespace SeleniumWendriver.TestScript.JavaScript
             element.Click();
 
         }
+
+        [TestMethod]
+        public void TestJavaScriptBugzilla()
+        {
+            NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
+            LinkHelper.ClickLink(By.LinkText("File a Bug"));
+            IJavaScriptExecutor executor = ((IJavaScriptExecutor)ObjectRepository.Driver);
+            executor.ExecuteScript("document.getElementById('Bugzilla_login').value='artemminsadyrov@seznam.cz'");
+            executor.ExecuteScript("document.getElementById('Bugzilla_password').value='159357'");
+            executor.ExecuteScript("document.getElementById('log_in').click()");
+
+        }
     }
 }

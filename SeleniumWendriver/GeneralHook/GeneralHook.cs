@@ -7,6 +7,15 @@ namespace SeleniumWendriver.GeneralHook
     [Binding]
     public sealed class GeneralHook
     {
+
+        private static ScenarioContext _scenarioContext;
+        private static FeatureContext _featureContext;
+
+        public GeneralHook(ScenarioContext Context)
+        {
+            _scenarioContext = Context;
+        }
+            
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
@@ -37,18 +46,25 @@ namespace SeleniumWendriver.GeneralHook
             Console.WriteLine("BeforeScenario Hook");
         }
 
-        [AfterScenario("Tag1")]
+        [BeforeScenario]
+        public static void BeforeScenarioContextInjection(FeatureContext featureContext, ScenarioContext scenarioContext)
+        {
+            _featureContext = featureContext;
+            _scenarioContext = scenarioContext;
+        }
+
+        [AfterScenario]
         public static void AfterScenario()
         {
             Console.WriteLine("AfterScenario Hook");
             //Console.WriteLine("Title : {0}", ScenarioContext.Current.ScenarioInfo.Title);
             //Console.WriteLine("Title : {0}", ScenarioContext.Current.TestError);
-            if (ScenarioContext.Current.TestError != null)
+            if (_scenarioContext.TestError != null)
             {
-                string name = ScenarioContext.Current.ScenarioInfo.Title + ".jpeg";
+                string name = _scenarioContext.ScenarioInfo.Title + ".jpeg";
                 GenericHelper.TakeScreenShot(name);
-                Console.WriteLine(ScenarioContext.Current.TestError.Message);
-                Console.WriteLine(ScenarioContext.Current.TestError.StackTrace);
+                Console.WriteLine(_scenarioContext.TestError.Message);
+                Console.WriteLine(_scenarioContext.TestError.StackTrace);
             }
         }
     }

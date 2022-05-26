@@ -22,6 +22,7 @@ namespace SeleniumWendriver.TestScript.HandleDropDown
             TextBoxHelper.TypeInTextBox(By.Id("Bugzilla_login"), ObjectRepository.Config.GetUsername());
             TextBoxHelper.TypeInTextBox(By.Id("Bugzilla_password"), ObjectRepository.Config.GetPassword());
             ButtonHelper.ClickButton(By.Id("log_in"));
+            LinkHelper.ClickLink(By.LinkText("Testng"));
             ComboBoxHelper.SelectElement(By.Id("bug_severity"),2);
             ComboBoxHelper.SelectElement(By.Id("bug_severity"), "blocker");
             foreach (string str in ComboBoxHelper.GetAllItem(By.Id("bug_severity")))

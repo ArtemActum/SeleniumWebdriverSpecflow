@@ -40,13 +40,13 @@ namespace SeleniumWendriver.PageObject
 
         #region Actions
 
-        public BugDetail Login(string username, string password)
+        public EnterBug Login(string username, string password)
         {
             LoginTextBox.SendKeys(username);
             PassTextBox.SendKeys(password);
             LoginButton.Click();
-            //GenericHelper.WaitForWebElementInPage(By.LinkText("Testng"), TimeSpan.FromSeconds(30));
-            return new BugDetail(driver);
+            GenericHelper.WaitForWebElementInPage(By.LinkText("Testng"), TimeSpan.FromSeconds(30));
+            return new EnterBug(driver);
         }
         #endregion
 

@@ -22,7 +22,7 @@ namespace SeleniumWendriver.TestScript.WebElement
             try
             {
                 ReadOnlyCollection<IWebElement> col = ObjectRepository.Driver.FindElements(By.TagName("input"));
-                Console.WriteLine("Size : {0}", col.Count);
+                Console.WriteLine("Size : {0}", col.Count); //22
                 Console.WriteLine("Size : {0}", col.ElementAt(0));
 
                 //var a = ObjectRepository.Driver.FindElement(By.Name("showmybugslink")).GetAttribute("checked");

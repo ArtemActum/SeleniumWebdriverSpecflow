@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
@@ -33,9 +34,13 @@ namespace SeleniumWendriver.TestScript.Popups
             ButtonHelper.ClickButton(By.XPath("//body/button[.='Try it']"));
             //var text = JavaScriptPopHelper.GetPopUpText();
             //JavaScriptPopHelper.ClickOkOnPopup();
+            Thread.Sleep(1000);
             IAlert alert = ObjectRepository.Driver.SwitchTo().Alert();
+            Thread.Sleep(1000);
             var text = alert.Text;
+            Thread.Sleep(1000);
             alert.Accept();
+            Thread.Sleep(1000);
             ObjectRepository.Driver.SwitchTo().DefaultContent();
             ////GenericHelper.WaitForWebElement(By.Id("textareaCode"), TimeSpan.FromSeconds(60));
             //TextBoxHelper.ClearTextBox(By.XPath("//div[@id='textareawrapper']/div"));

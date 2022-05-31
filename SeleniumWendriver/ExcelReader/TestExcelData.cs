@@ -17,10 +17,10 @@ namespace SeleniumWendriver.ExcelReader
         public void TestReadExcel()
         {   // 1 Example
 
-            //FileStream stream = new FileStream(@"C:\downloads\Cucumber\Data.xlsx", FileMode.Open,FileAccess.Read);
+            //FileStream stream = new FileStream(@"C:\downloads\Cucumber\Data.xlsx", FileMode.Open, FileAccess.Read);
             //IExcelDataReader reader = ExcelReaderFactory.CreateOpenXmlReader(stream);
             //DataTable table = reader.AsDataSet().Tables["Bugzilla"];
-            ////Console.WriteLine("Data : {0}", table.Rows[0][0]);
+            //Console.WriteLine("Data : {0}", table.Rows[0][0]);
             //for (int i = 0; i < table.Rows.Count; i++)
             //{
             //    var col = table.Rows[i];
@@ -37,6 +37,7 @@ namespace SeleniumWendriver.ExcelReader
             Console.WriteLine(ExcelReaderHelper.GetCellData(xlPath, "Bugzilla", 0, 0));
             Console.WriteLine(ExcelReaderHelper.GetCellData(xlPath, "Bugzilla", 0, 1));
             Console.WriteLine(ExcelReaderHelper.GetCellData(xlPath, "Bugzilla", 0, 2));
+           
 
 
         }

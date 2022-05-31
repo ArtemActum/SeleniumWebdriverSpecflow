@@ -33,7 +33,7 @@ namespace SeleniumWendriver.StepDefinition
         [Given(@"File a Bug Should be visible")]
         public void GivenFileABugShouldBeVisible()
         {
-            Assert.IsTrue(GenericHelper.IsElementPresent(By.Id("enter_bug")));
+            Assert.IsTrue(GenericHelper.IsElementPresent(By.Id("enter_bug"))); //Assertion are the check points in the test, These are used to validate, whether the expected output and actual output are same or not
         }
 
         #endregion 

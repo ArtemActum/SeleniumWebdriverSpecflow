@@ -39,7 +39,7 @@ namespace SeleniumWendriver.DataDriven.Script
         }
 
         [TestMethod]
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"C:\downloads\CreateData.csv", "CreateData#csv", DataAccessMethod.Sequential)]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"C:\downloads\CreateData.csv", "CreateData#csv", DataAccessMethod.Sequential)] //MSTest frame work provide the attribute “DataSource” by which, one can easily access the data
 
         public void TestBugFromCSV()
         {

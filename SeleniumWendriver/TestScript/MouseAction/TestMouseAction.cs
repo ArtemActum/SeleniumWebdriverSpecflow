@@ -23,9 +23,9 @@ namespace SeleniumWendriver.TestScript.MouseAction
             IWebElement ele = ObjectRepository.Driver.FindElement(By.Id("draggable"));
 
 
-            act.ContextClick(ele)
-                .Build()
-                .Perform();
+            act.ContextClick(ele) // it is going to open the right click menu
+                .Build() //sestavim akce volanim metody Build
+                .Perform(); //Proveďte akci voláním metody Perform
 
             Thread.Sleep(5000);
         }
@@ -39,8 +39,8 @@ namespace SeleniumWendriver.TestScript.MouseAction
             IWebElement tar = ObjectRepository.Driver.FindElement(By.Id("droptarget"));
             IWebElement cookies = ObjectRepository.Driver.FindElement(By.XPath("//button[contains(text(),'Accept and Close')]"));
 
-            act.Click(cookies)
-                .DragAndDrop(src, tar)
+            act.Click(cookies) //Accept cookies
+                .DragAndDrop(src, tar) 
                 .Build()
                 .Perform();
 
@@ -61,9 +61,9 @@ namespace SeleniumWendriver.TestScript.MouseAction
 
                 Thread.Sleep(5000);
 
-                act.ClickAndHold(ele)
-                .MoveToElement(tar, 0, 30)
-                .Release()
+                act.ClickAndHold(ele) // Stiskne a podrží levé tlačítko myši.
+                .MoveToElement(tar, 0, 30) // Přesune aktuální prvek na zadaný prvek
+                .Release() // Uvolní levé tlačítko myši
                 .Build()
                 .Perform();
 
@@ -80,10 +80,10 @@ namespace SeleniumWendriver.TestScript.MouseAction
             IWebElement ele2 = ObjectRepository.Driver.FindElement(By.Id("quicksearch_main"));
             ele1.SendKeys("fx");
 
-            act.KeyDown(ele2, Keys.LeftShift)
+            act.KeyDown(ele2, Keys.LeftShift) // Simuluje stisk klávesy
                 .SendKeys(ele2, "f")
                 .SendKeys(ele2, "x")
-                .KeyUp(ele2, Keys.LeftShift)
+                .KeyUp(ele2, Keys.LeftShift) // Simuluje uvolnění klíče
                 .Build()
                 .Perform();
             Thread.Sleep(5000);

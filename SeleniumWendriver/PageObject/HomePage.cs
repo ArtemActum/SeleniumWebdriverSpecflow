@@ -22,11 +22,11 @@ namespace SeleniumWendriver.PageObject
 
         #region WebElement
 
-        [FindsBy(How = How.Id, Using = "quicksearch_main")]
+        [FindsBy(How = How.Id, Using = "quicksearch_main")] //FindsBy attribute 
         private IWebElement QuickSearchTextBox;
 
         [FindsBy(How = How.Id, Using = "find")]
-        [CacheLookup]
+        [CacheLookup] // se používá k označení jednou umístěných WebElements, aby bylo možné vždy použít stejnou instanci v DOM
         private IWebElement QuickSearchBtn;
 
         [FindsBy(How = How.LinkText, Using = "File a Bug")]

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SeleniumWendriver.ExcelReader
 {
-    public class ExcelReaderHelper
+    public class ExcelReaderHelper // Its an utility which is use for reading the data from excel file
     {
         private static IDictionary<string, IExcelDataReader> _cache;
         private static FileStream stream;

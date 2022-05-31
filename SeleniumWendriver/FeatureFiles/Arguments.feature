@@ -2,6 +2,13 @@
 
 To demo passing of argument value from the feature file
 
+• Given Keyword :- This keyword defines a preconditions of a scenario.
+• And Keyword :- This keyword is used to provide the additional condition to the step. It can be used with Given, When & Then
+• When Keyword :- This keyword defines an action that will be executed.
+• Then Keyword :- This keyword defines the outcome of the previous step.
+• But Keyword :- This Keyword defines negative condition added to the previous step
+• Background Keyword :- This keyword defines the steps which are common across the scenario
+
 Background: Pre-Condition
 	# Given Step
 	Given User is at Home Page with url "http://localhost:5001/"
@@ -35,7 +42,8 @@ Scenario: Login Arguments
 	Then User should be logged out and should be at Home Page
 
 	#@ignore
-Scenario Outline: Create Bug with scenario outline Arguments
+	#Použijte k předání různých argumentů do více kroků
+Scenario Outline: Create Bug with scenario outline Arguments 
 	When I click on "<flink>" Link
 	Then User should be at Login Page with title "<lTitle>"
 	When I provide the "<user>", "<pass>" and click on Login button

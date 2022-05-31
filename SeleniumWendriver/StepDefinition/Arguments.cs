@@ -125,6 +125,13 @@ namespace SeleniumWendriver.StepDefinition
             ObjectRepository.bPage.ClickSubmit();
         }
 
+        [Then(@"User should be at Search page")]
+        public void ThenUserShouldBeAtSearchPage()
+        {
+           
+        }
+
+
 
         #endregion
 

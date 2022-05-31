@@ -10,7 +10,6 @@ namespace SeleniumWendriver.Configuration
     {
         Firefox,
         Chrome,
-        IExplorer,
-        PhantomJs
+        IExplorer
     }
 }

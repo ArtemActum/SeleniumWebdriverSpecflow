@@ -10,7 +10,7 @@ using SeleniumExtras.PageObjects;
 
 namespace SeleniumWendriver.BaseClasses
 {
-    public class PageBase // kontruktor pro inicializaci stranky, spolecna actions/navigace methods
+    public class PageBase // konstruktor pro inicializaci stranky, spolecna actions/navigace methods
     {
         private IWebDriver driver;
 

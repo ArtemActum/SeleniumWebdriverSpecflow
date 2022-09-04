@@ -22,7 +22,7 @@ namespace SeleniumWendriver.TestScript.WebDriverWaiter
         {
 
             NavigationHelper.NavigateToUrl("https://www.udemy.com/");
-            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait =  TimeSpan.FromSeconds(50);
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(50);
             TextBoxHelper.TypeInTextBox(By.XPath("//input[@class='udlite-text-input udlite-text-input-small udlite-text-sm udlite-search-form-autocomplete-input js-header-search-field']"),
                "C#");
         }
@@ -32,7 +32,7 @@ namespace SeleniumWendriver.TestScript.WebDriverWaiter
         public void TestDynamicWait()
         {
             NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
-            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1); 
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
             WebDriverWait wait = new WebDriverWait(ObjectRepository.Driver, TimeSpan.FromSeconds(50)); // Create the object of our WebDriverWait class
             wait.PollingInterval = TimeSpan.FromMilliseconds(250);
             wait.IgnoreExceptionTypes(typeof(NoSuchElementException), typeof(ElementNotVisibleException));
@@ -71,9 +71,9 @@ namespace SeleniumWendriver.TestScript.WebDriverWaiter
         {
             return ((x) =>
             {
-                
+
                 if (x.Title.Contains("Bug List"))
-                    
+
                     return x.Title;
                 return null;
             });
@@ -107,16 +107,16 @@ namespace SeleniumWendriver.TestScript.WebDriverWaiter
         }
 
         private Func<IWebDriver, string> waitforpageTitle()
+        {
+            return ((x) =>
             {
-                return ((x) =>
-                {
-                    Console.WriteLine("Waiting for Title");
-                    if (
-                        x.FindElements(By.CssSelector("#title p")).Count == 1)
-                        return x.FindElement(By.CssSelector("#title p")).Text;
-                    return null;
-                });
-            }
+                Console.WriteLine("Waiting for Title");
+                if (
+                    x.FindElements(By.CssSelector("#title p")).Count == 1)
+                    return x.FindElement(By.CssSelector("#title p")).Text;
+                return null;
+            });
         }
     }
+}
 

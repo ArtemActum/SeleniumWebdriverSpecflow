@@ -1,4 +1,4 @@
-﻿using log4net;
+﻿
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using SeleniumWendriver.ComponentHelper;
@@ -14,7 +14,7 @@ namespace SeleniumWendriver.TestScript.HyperLink
     [TestClass]
     public class TestHyperLink
     {
-        private static readonly ILog Logger = Log4NetHelper.GetXmlLogger(typeof(TestHyperLink));
+        
 
         [TestMethod, TestCategory("Smoke")]
         public void ClickLink()
@@ -37,7 +37,7 @@ namespace SeleniumWendriver.TestScript.HyperLink
 
             catch (Exception exception)
             {
-                Logger.Error(exception.StackTrace);
+                
                 GenericHelper.TakeScreenShot();
                 throw;
             }

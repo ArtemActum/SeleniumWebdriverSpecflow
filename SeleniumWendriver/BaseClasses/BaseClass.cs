@@ -25,7 +25,7 @@ namespace SeleniumWendriver.BaseClasses
     [Binding]
     public class BaseClass
     {
-        private static FirefoxProfile GetFirefoxOptions()
+        private static FirefoxProfile GetFirefoxOptions() 
         {
             FirefoxProfile profile = new FirefoxProfile();
             FirefoxProfileManager manager = new FirefoxProfileManager();
@@ -39,7 +39,7 @@ namespace SeleniumWendriver.BaseClasses
             option.AddArgument("start-maximized");
             return option;
         }
-            private static InternetExplorerOptions GetIEOptions()
+            private static InternetExplorerOptions GetIEOptions() // used to launch the IE Browser with additional Settings
         {
             InternetExplorerOptions options = new InternetExplorerOptions();
             options.IntroduceInstabilityByIgnoringProtectedModeSettings = true;
@@ -106,8 +106,8 @@ namespace SeleniumWendriver.BaseClasses
         {
             if(ObjectRepository.Driver != null)
             {
-                ObjectRepository.Driver.Close();
-                ObjectRepository.Driver.Quit();
+                ObjectRepository.Driver.Close(); //to close the current browser window and it will not stop the webdriver
+                ObjectRepository.Driver.Quit(); // to close all the browser window and also stop the webdriver
 
             }
         }

@@ -23,21 +23,10 @@ namespace SeleniumWendriver.TestScript.HyperLink
             {
                 NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
                 LinkHelper.ClickLink(By.LinkText("File a Bug"));
-
-                //LinkHelper.ClickLink(By.PartialLinkText("File"));
-
-                //IWebElement element = ObjectRepository.Driver.FindElement(By.LinkText("File a Bug"));
-                //element.Click();
-
-                //IWebElement pelement = ObjectRepository.Driver.FindElement(By.PartialLinkText("File"));
-                //pelement.Click();
-
-
             }
 
             catch (Exception exception)
             {
-                
                 GenericHelper.TakeScreenShot();
                 throw;
             }

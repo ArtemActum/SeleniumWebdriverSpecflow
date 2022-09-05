@@ -60,10 +60,5 @@ namespace SeleniumWendriver.ComponentHelper
 
 
         }
-
-        public static void SwitchToFrame(By locator)
-        {
-            ObjectRepository.Driver.SwitchTo().Frame(ObjectRepository.Driver.FindElement(locator));
-        }
     }
 }

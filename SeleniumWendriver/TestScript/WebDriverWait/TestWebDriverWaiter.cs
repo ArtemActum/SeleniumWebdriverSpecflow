@@ -58,26 +58,26 @@ namespace SeleniumWendriver.TestScript.WebDriverWaiter
             wait.Until(ExpectedConditions.ElementExists(By.XPath("//div[@id='bugzilla-body']/h2[.='Current State']")));
         }
 
-        private Func<IWebDriver, bool> waitforSearchbox()
-        {
-            return ((x) =>
-             {
-                 Console.WriteLine("Waiting for Search Box");
-                 return x.FindElements(By.XPath("/html//input[@id='quicksearch_top']")).Count == 1;
-             });
-        }
+        //private Func<IWebDriver, bool> waitforSearchbox()
+        //{
+        //    return ((x) =>
+        //     {
+        //         Console.WriteLine("Waiting for Search Box");
+        //         return x.FindElements(By.XPath("/html//input[@id='quicksearch_top']")).Count == 1;
+        //     });
+        //}
 
-        private Func<IWebDriver, string> waitforTitle()
-        {
-            return ((x) =>
-            {
+        //private Func<IWebDriver, string> waitforTitle()
+        //{
+        //    return ((x) =>
+        //    {
 
-                if (x.Title.Contains("Bug List"))
+        //        if (x.Title.Contains("Bug List"))
 
-                    return x.Title;
-                return null;
-            });
-        }
+        //            return x.Title;
+        //        return null;
+        //    });
+        //}
         private Func<IWebDriver, IWebElement> waitforElement()
         {
             return ((x) =>

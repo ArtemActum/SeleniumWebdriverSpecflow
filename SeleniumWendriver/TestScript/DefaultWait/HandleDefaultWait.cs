@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SeleniumWendriver.TestScript.DefaultWait
@@ -31,8 +32,21 @@ namespace SeleniumWendriver.TestScript.DefaultWait
             DefaultWait<IWebElement> wait = new DefaultWait<IWebElement>(ObjectRepository.Driver.FindElement(By.Id("bug_severity")));
             wait.PollingInterval = TimeSpan.FromMilliseconds(200);
             wait.Timeout = TimeSpan.FromSeconds(50);
-            wait.IgnoreExceptionTypes(typeof(NoSuchElementException), typeof(ElementNotVisibleException));
+            //wait.IgnoreExceptionTypes(typeof(NoSuchElementException), typeof(ElementNotVisibleException));
             Console.WriteLine("After wait : {0}", wait.Until(changeofvalue()));
+
+        }
+
+        [TestMethod]
+        public void TestFreeCharge()
+        {
+            NavigationHelper.NavigateToUrl("https://www.freecharge.in/#");
+            LinkHelper.ClickLink(By.XPath("/html//div[@id='__next']/div[1]//div[@class='home-tab-wrapper']/div[1]/ul/li[@title='Mobile Recharge']/div[@class='tile-img-tag']"));
+            Assert.IsTrue(GenericHelper.WaitForWebElement(By.XPath("/html//div[@id='__next']/div[1]/div[@class='main-container']/div[@class='main-wrapper']//form//input[@name='Enter Mobile Number']"), TimeSpan.FromSeconds(50)));
+            //Thread.Sleep(3000);
+            LinkHelper.ClickLink(By.XPath("/html//div[@id='__next']/div[1]/footer/div[@class='footer-section']//div[@class='footer-list-container']/div[4]/div[@class='links-list']/ul[1]/li[7]/div/span[@class='tooltip-label tooltip-show-arrow']"));
+            Assert.IsTrue(GenericHelper.WaitForWebElement(By.XPath("/html//div[@id='__next']/div[1]/div[@class='main-container']/div[@class='main-wrapper']//input[@name='search-field']"), TimeSpan.FromSeconds(50)));
+            
         }
 
         private Func<IWebElement, string> changeofvalue()

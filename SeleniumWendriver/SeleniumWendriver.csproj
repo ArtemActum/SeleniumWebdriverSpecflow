@@ -492,7 +492,7 @@
     <Compile Include="BaseClasses\PageBase.cs" />
     <Compile Include="ComponentHelper\BrowserHelper.cs" />
     <Compile Include="ComponentHelper\ButtonHelper.cs" />
-    <Compile Include="ComponentHelper\Class1.cs" />
+    <Compile Include="ComponentHelper\CheckBoxHelper.cs" />
     <Compile Include="ComponentHelper\ComboBoxHelper.cs" />
     <Compile Include="ComponentHelper\GenericHelper.cs" />
     <Compile Include="ComponentHelper\LinkHelper.cs" />
@@ -501,12 +501,10 @@
     <Compile Include="ComponentHelper\WindowHelper.cs" />
     <Compile Include="Configuration\AppConfigReader.cs" />
     <Compile Include="Configuration\BrowserType.cs" />
-    <Compile Include="CustomException\NoSuchKeywordFoundException.cs" />
     <Compile Include="CustomException\NoSuitableDriverFound.cs" />
     <Compile Include="TestScript\CreateBug\TestCreateBug.cs" />
     <Compile Include="GeneralHook\GeneralHook.cs" />
     <Compile Include="Interfaces\IConfig.cs" />
-    <Compile Include="Keyword\DataEngine.cs" />
     <Compile Include="PageObject\BugDetail.cs" />
     <Compile Include="PageObject\EnterBug.cs" />
     <Compile Include="PageObject\HomePage.cs" />
@@ -516,12 +514,9 @@
     <Compile Include="StepDefinition\Arguments.cs" />
     <Compile Include="StepDefinition\SpecflowWithoutPOM.cs" />
     <Compile Include="StepDefinition\SpecflowPOM.cs" />
-    <Compile Include="TestScript\AutoSuggest\TestAutoSuggest.cs" />
     <Compile Include="TestScript\BrowserActions\TestBrowserActions.cs" />
-    <Compile Include="TestScript\Button\HandleButton.cs" />
     <Compile Include="TestScript\CheckBox\TestCheckBox.cs" />
     <Compile Include="TestScript\DefaultWait\HandleDefaultWait.cs" />
-    <Compile Include="TestScript\HyperLink\TestHyperLink.cs" />
     <Compile Include="TestScript\MouseAction\TestMouseAction.cs" />
     <Compile Include="TestScript\PageObject\TestPageObject.cs" />
     <Compile Include="TestScript\WebDriverWait\TestWebDriverWaiter.cs" />
@@ -533,16 +528,8 @@
     <None Include="FeatureFiles\SpecflowWithoutPOM.feature" />
     <None Include="FeatureFiles\SpecflowPOM.feature" />
     <None Include="packages.config" />
-    <None Include="Resources\ExcelData.xlsx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\packages\Selenium.Mozilla.Firefox.Webdriver.0.6.0.1\driver\wires-0.6.0-win.exe">
-      <Link>wires-0.6.0-win.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Readme.txt" />
     <Content Include="Resources\chromedriver.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

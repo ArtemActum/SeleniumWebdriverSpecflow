@@ -24,7 +24,7 @@ Scenario: Login Arguments
 	When I click on Logout button at enter bug page
 	Then User should be logged out and should be at Home Page
 
-	Scenario: Create Bug Arguments
+Scenario: Create Bug Arguments
 	When I click on "File a Bug" Link
 	Then User should be at Login Page with title "Log in to Bugzilla"
 	When I provide the "artemminsadyrov@seznam.cz", "159357" and click on Login button

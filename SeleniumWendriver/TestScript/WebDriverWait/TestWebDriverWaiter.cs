@@ -22,9 +22,9 @@ namespace SeleniumWendriver.TestScript.WebDriverWaiter
         {
 
             NavigationHelper.NavigateToUrl("https://www.udemy.com/");
-            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(50);
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(40); //setpageloadtimeout
             TextBoxHelper.TypeInTextBox(By.XPath("//input[@class='udlite-text-input udlite-text-input-small udlite-text-sm udlite-search-form-autocomplete-input js-header-search-field']"),
-               "C#");
+               "C# Selenium Specflow");
         }
 
 
@@ -32,13 +32,14 @@ namespace SeleniumWendriver.TestScript.WebDriverWaiter
         public void TestDynamicWait()
         {
             NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
-            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
+            ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1); //Set the Implicit wait to One
             WebDriverWait wait = new WebDriverWait(ObjectRepository.Driver, TimeSpan.FromSeconds(50)); // Create the object of our WebDriverWait class
-            wait.PollingInterval = TimeSpan.FromMilliseconds(250);
-            wait.IgnoreExceptionTypes(typeof(NoSuchElementException), typeof(ElementNotVisibleException));
-            wait.Until(waitforElement()).SendKeys("health");
-            ButtonHelper.ClickButton(By.XPath("/html//input[@id='find_top']"));
-            wait.Until(waitforLastElement()).Click();
+            wait.PollingInterval = TimeSpan.FromMilliseconds(250); //Specify the PollingInterval
+            wait.IgnoreExceptionTypes(typeof(NoSuchElementException), typeof(ElementNotVisibleException)); //Specify the Exception to Ignore
+            wait.Until(waitforElement()).SendKeys("health"); // Call the until method with the wait logic
+            //ButtonHelper.ClickButton(By.XPath("/html//input[@id='find_top']"));
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("/html//input[@id='find_top']"))).Click();
+            //wait.Until(waitforLastElement()).Click();
             Console.WriteLine("Title : {0}", wait.Until(waitforpageTitle()));
         }
 
@@ -58,26 +59,7 @@ namespace SeleniumWendriver.TestScript.WebDriverWaiter
             wait.Until(ExpectedConditions.ElementExists(By.XPath("//div[@id='bugzilla-body']/h2[.='Current State']")));
         }
 
-        //private Func<IWebDriver, bool> waitforSearchbox()
-        //{
-        //    return ((x) =>
-        //     {
-        //         Console.WriteLine("Waiting for Search Box");
-        //         return x.FindElements(By.XPath("/html//input[@id='quicksearch_top']")).Count == 1;
-        //     });
-        //}
 
-        //private Func<IWebDriver, string> waitforTitle()
-        //{
-        //    return ((x) =>
-        //    {
-
-        //        if (x.Title.Contains("Bug List"))
-
-        //            return x.Title;
-        //        return null;
-        //    });
-        //}
         private Func<IWebDriver, IWebElement> waitforElement()
         {
             return ((x) =>

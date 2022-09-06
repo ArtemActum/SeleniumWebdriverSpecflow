@@ -29,8 +29,6 @@ namespace SeleniumWendriver.StepDefinition
         private readonly By _exploreTextBugDetail = By.XPath("/html//title[.='Enter Bug: Testng']");
 
 
-
-
         public SpecflowWithoutPOM()
         {
             _webDriver = new ChromeDriver();
@@ -55,7 +53,6 @@ namespace SeleniumWendriver.StepDefinition
         {
             _webDriver.FindElement(_testNG).Click();
         }
-
 
 
         [When(@"I click on File a Bug Link\.")]
@@ -87,10 +84,6 @@ namespace SeleniumWendriver.StepDefinition
         {
             _webDriver.FindElement(_logoutButton).Click();
         }
-
-
-
-
 
         #endregion
 
@@ -131,11 +124,6 @@ namespace SeleniumWendriver.StepDefinition
             _webDriver.Quit();
 
         }
-
-
-
-
-
 
         #endregion
 

@@ -26,26 +26,22 @@ namespace SeleniumWendriver.TestScript.PageObject
             EnterBug enterBug = loginPage.Login(ObjectRepository.Config.GetUsername(), ObjectRepository.Config.GetPassword());
             BugDetail bugDetail = enterBug.NavigateToDetail();
             bugDetail.SelectFromSeverity("trivial");
-            GenericHelper.TakeScreenShot();
+            //GenericHelper.TakeScreenShot();
             GenericHelper.TakeScreenShot("Test.jpeg");
             ButtonHelper.ClickButton(By.XPath("//div[@id='header']/ul[1]/li[11]/a"));
         }
 
-        //public string DisplayElementName(PageBase aPageInstance, string element)
-        //{
-        //    var fieldInfo = GetFieldInfo(aPageInstance, element);
-        //    var memeberInfo = fieldInfo.GetCustomAttributes(true);
-        //    var attribute = memeberInfo[0] as FindsByAttribute;
-        //    return string.Format("How : {0} using : {1}", attribute.How, attribute.Using);
-        //}
-
-        //public FieldInfo GetFieldInfo(PageBase aPageInstance, string element)
-        //{
-        //    var elementName = element.Split('.');
-        //    Type aPageType = aPageInstance.GetType();
-        //    var fieldInofs = aPageType.GetFields();
-        //    return fieldInofs.FirstOrDefault((x) => x.Name.Equals(elementName[1], StringComparison.OrdinalIgnoreCase));
-        //}
+        [TestMethod]
+        public void TestButton()
+        {
+            NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
+            HomePage homePage = new HomePage(ObjectRepository.Driver);
+            LoginPage loginPage = homePage.NavigateToLogin();
+            loginPage.TypeData(ObjectRepository.Config.GetUsername(), ObjectRepository.Config.GetPassword());
+            Console.WriteLine("Enabled : {0}", ButtonHelper.IsButtonEnabled(By.Id("log_in")));
+            Console.WriteLine("Button Text : {0}", ButtonHelper.GetButtonText(By.Id("log_in")));
+            ButtonHelper.ClickButton(By.Id("log_in"));
+        }
 
 
     }

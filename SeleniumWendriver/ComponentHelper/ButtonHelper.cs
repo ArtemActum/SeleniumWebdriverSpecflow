@@ -16,7 +16,7 @@ namespace SeleniumWendriver.ComponentHelper
             element.Click();
         }
 
-        public static bool IsButtonEnabled(By locator)
+        public static bool IsButtonEnabled(By locator) // overuje tlačítko je povoleno nebo ne
         {
             element = GenericHelper.GetElement(locator);
             return element.Enabled;

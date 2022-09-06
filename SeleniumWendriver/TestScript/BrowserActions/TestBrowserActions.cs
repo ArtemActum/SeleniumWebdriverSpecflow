@@ -27,11 +27,6 @@ namespace SeleniumWendriver.TestScript.BrowserActions
 
             BrowserHelper.RefreshPage();
 
-            //NavigationHelper.NavigateToUrl("https://www.udemy.com/bdd-with-selenium-webdriver-and-speckflow-using-c/");
-            //ButtonHelper.ClickButton(By.XPath("//div[@id='related']/descendant::a[position()=1]"));
-            //BrowserHelper.GoBack();
-            //BrowserHelper.Forward();
-            //BrowserHelper.RefreshPage();
 
         }
     }

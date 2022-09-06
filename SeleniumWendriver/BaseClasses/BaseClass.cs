@@ -56,7 +56,7 @@ namespace SeleniumWendriver.BaseClasses
 
         private static ChromeDriver GetChromeDriver()
         {
-            /*IWebDriver*/ ChromeDriver driver = new ChromeDriver(GetChromeOptions());
+            ChromeDriver driver = new ChromeDriver(GetChromeOptions());
             return driver;
         }
 
@@ -68,7 +68,7 @@ namespace SeleniumWendriver.BaseClasses
 
         
 
-        //[AssemblyInitialize]
+        
         [BeforeTestRun]
         public static void InitWebdriver(/*TestContext tc*/)
         {
@@ -94,13 +94,13 @@ namespace SeleniumWendriver.BaseClasses
                     throw new NoSuitableDriverFound("Driver Not Found: " + ObjectRepository.Config.GetBrowser().ToString());
             }
             ObjectRepository.Driver.Manage().Cookies.DeleteAllCookies();
-            ObjectRepository.Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(ObjectRepository.Config.GetPageLoadTimeOut());
+            ObjectRepository.Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(ObjectRepository.Config.GetPageLoadTimeOut()); // nastaveni nacitani stranky
             ObjectRepository.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ObjectRepository.Config.GetElementLoadTimeOut());
-            ObjectRepository.Driver.Manage().Cookies.DeleteAllCookies();
-            BrowserHelper.BrowserMaximize();
+            ObjectRepository.Driver.Manage().Cookies.DeleteAllCookies(); 
+            BrowserHelper.BrowserMaximize(); //otevri stranku na celou obrazovku
         }
 
-        //[AssemblyCleanup]
+        
         [AfterTestRun]
         public static void TearDown()
         {

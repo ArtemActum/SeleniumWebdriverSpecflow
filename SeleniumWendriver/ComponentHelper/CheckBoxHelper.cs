@@ -13,13 +13,13 @@ namespace SeleniumWendriver.ComponentHelper
     {
         private static IWebElement element;
 
-        public static void CheckedCheckBox(By locator)
+        public static void CheckedCheckBox(By locator) 
         {
             element = GenericHelper.GetElement(locator);
             element.Click();
         }
 
-        public static bool IsCheckBoxChecked(By locator)
+        public static bool IsCheckBoxChecked(By locator) // metoda kontroluje, zda je checkbox zaskrtnuty nebo ne
         {
             element = GenericHelper.GetElement(locator);
             string flag = element.GetAttribute("checked");

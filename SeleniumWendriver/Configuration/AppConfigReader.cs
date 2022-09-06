@@ -15,14 +15,11 @@ namespace SeleniumWendriver.Configuration
         public BrowserType? GetBrowser()
         {
             string browser = ConfigurationManager.AppSettings.Get(AppConfigKeys.Browser);
-            try
-            {
+            
+            
                 return (BrowserType)Enum.Parse(typeof(BrowserType), browser);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            
+            
         }
 
         public int GetElementLoadTimeOut()

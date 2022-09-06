@@ -15,13 +15,13 @@ namespace SeleniumWendriver.DataDriven.Script
     [TestClass]
     public class TestCreateBug
     {
-        private TestContext _testContext;
+        //private TestContext _testContext;
 
-        public TestContext TestContext
-        {
-            get { return _testContext; }
-            set { _testContext = value; }
-        }
+        //public TestContext TestContext
+        //{
+        //    get { return _testContext; }
+        //    set { _testContext = value; }
+        //}
 
         [TestMethod]
         public void TestBug()
@@ -36,5 +36,7 @@ namespace SeleniumWendriver.DataDriven.Script
             bugPage.ClickSubmit();
             bugPage.Logout();
         }
+
+
     }
 }

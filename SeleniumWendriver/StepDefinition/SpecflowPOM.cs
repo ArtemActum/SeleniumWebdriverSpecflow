@@ -20,8 +20,6 @@ namespace SeleniumWendriver.StepDefinition
         private EnterBug ePage;
         private BugDetail bPage;
 
-        
-
         #region Given
 
         [Given(@"User is at Home Page")]
@@ -77,9 +75,6 @@ namespace SeleniumWendriver.StepDefinition
             bPage = ePage.NavigateToDetail();
         }
 
-
-
-
         [When(@"I provide the severity , harware , platform and summary")]
         public void WhenIProvideTheSeverityHarwarePlatformAndSummary()
         {
@@ -88,12 +83,9 @@ namespace SeleniumWendriver.StepDefinition
         }
 
 
-
         #endregion
 
         #region Then
-
- 
 
         [Then(@"User should be at Bug Detail Page")]
         public void ThenUserShouldBeAtBugDetailPage()
@@ -111,17 +103,11 @@ namespace SeleniumWendriver.StepDefinition
 
         }
 
-
-
-
-
-
         [Then(@"User Should be at Enter Bug page")]
         public void ThenUserShouldBeAtEnterBugPage()
         {
             Assert.AreEqual("Enter Bug", ObjectRepository.ePage.Title);
         }
-
 
 
         [Then(@"Bug should get created")]

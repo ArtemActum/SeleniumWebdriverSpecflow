@@ -79,7 +79,6 @@ namespace SeleniumWendriver.StepDefinition
         }
 
 
-
         #endregion
 
         #region Then
@@ -103,8 +102,6 @@ namespace SeleniumWendriver.StepDefinition
         {
             Assert.AreEqual(title, ObjectRepository.ePage.Title);
         }
-
-
 
 
         #endregion

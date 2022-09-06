@@ -48,6 +48,13 @@ namespace SeleniumWendriver.PageObject
             GenericHelper.WaitForWebElementInPage(By.LinkText("Testng"), TimeSpan.FromSeconds(30));
             return new EnterBug(driver);
         }
+
+        public EnterBug TypeData(string username, string password)
+        {
+            LoginTextBox.SendKeys(username);
+            PassTextBox.SendKeys(password);
+            return new EnterBug(driver);
+        }
         #endregion
 
         #region Navigation

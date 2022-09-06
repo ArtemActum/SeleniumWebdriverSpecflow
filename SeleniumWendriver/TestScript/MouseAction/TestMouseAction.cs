@@ -27,7 +27,7 @@ namespace SeleniumWendriver.TestScript.MouseAction
                 .Build() //sestavim akce volanim metody Build
                 .Perform(); //Proveďte akci voláním metody Perform
 
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
         }
 
         [TestMethod]
